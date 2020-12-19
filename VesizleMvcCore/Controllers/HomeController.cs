@@ -14,9 +14,11 @@ namespace VesizleMvcCore.Controllers
     public class HomeController : Controller
     {
         private ISearchService _searchService;
-        public HomeController(ISearchService searchService)
+        private IMovieService _movieService;
+        public HomeController(ISearchService searchService, IMovieService movieService)
         {
             _searchService = searchService;
+            _movieService = movieService;
         }
 
         public IActionResult Index()

@@ -15,7 +15,7 @@ namespace VesizleMvcCore.NodejsApi.ApiResults
         public List<Genre> Genres{ get; set; }
         public string Homepage { get; set; }
         public int Id { get; set; }
-        public int Imdb_Id { get; set; }
+        public string Imdb_Id { get; set; }
         public string Original_Language { get; set; }//*
         public string Original_Title { get; set; }//*
         public string Overview { get; set; }

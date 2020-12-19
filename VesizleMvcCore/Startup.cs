@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using VesizleMvcCore.Constants;
 using VesizleMvcCore.NodejsApi.Api;
 using VesizleMvcCore.NodejsApi.Api.Abstract;
+using Westwind.AspNetCore.LiveReload;
 
 namespace VesizleMvcCore
 {
@@ -30,7 +31,8 @@ namespace VesizleMvcCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddLiveReload();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddHttpClient(AppConstants.HttpClientKey, client =>
              {
                  client.BaseAddress = new Uri(AppConstants.NodeJsApiUrl);
@@ -53,6 +55,8 @@ namespace VesizleMvcCore
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseLiveReload();
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseStaticFiles(new StaticFileOptions()
