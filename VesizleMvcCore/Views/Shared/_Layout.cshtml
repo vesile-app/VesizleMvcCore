@@ -9,6 +9,8 @@
     <link href="~/css/site.css" rel="stylesheet" />
     <link href="~/css/util.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href=""~/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href=""~/node_modules/bootstrap/dist/css/bootstrap-grid.min.css" rel="stylesheet" />
     <link href="~/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/node_modules/bootstrap/dist/css/bootstrap-grid.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
@@ -22,7 +24,7 @@
                 </div>
                 <div class="login_Btn fixed-top ">
                     <button id="loginBtn" type="button" class="btn btn-outline-warning btn-light ">@Html.ActionLink("Login", "Login", "Auth")</button>
-                    
+
 
                 </div>
             </div>
@@ -33,7 +35,6 @@
             @RenderBody()
         </main>
     </div>
-
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2020 - VesizleMvcCore - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
@@ -43,5 +44,6 @@
     @*<script src="~/lib/combined.min.js"></script>*@
     <script src="~/js/site.js"></script>
     <script src="~/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/node_modules/jquery/dist/jquery.min.js"></script>
 </body>
 </html>
