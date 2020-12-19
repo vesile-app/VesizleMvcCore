@@ -48,3 +48,25 @@
 .searchbar:focus-within {
     border: 1.5px solid #ffa500;
 }
+
+.scrolling-wrapper {
+    overflow-x: auto;
+    width: 100%;
+}
+
+
+.card-block {
+    height: 250px;
+    background-color: #fff;
+    border: none;
+    background-position: center;
+    background-size: cover;
+    transition: all 0.2s ease-in-out !important;
+    border-radius: 24px;
+
+}
+
+.card-block:hover {
+    transform: translateY(-5px);
+    box-shadow: none;
+}
