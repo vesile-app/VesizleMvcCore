@@ -34,6 +34,7 @@
     -moz-box-shadow: inset 0 0 3px #000000;
     -webkit-box-shadow: inset 0 0 3px #000000;
     box-shadow: inset 0 0 5px #696969;
+    display: flex;
 }
 
 .search_input {
@@ -43,6 +44,7 @@
     background: none;
     line-height: 40px;
     margin-left: 5px;
+    width: 100%;
 }
 
 .searchbar:focus-within {
