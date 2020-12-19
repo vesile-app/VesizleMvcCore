@@ -4,93 +4,38 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="row mt-3">
-    <div class="col-6 offset-3">
-        <form method="post">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" name="query" placeholder="Recipient's username" aria-label="Bir şey ara" aria-describedby="button-addon2">
-                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Button</button>
-            </div>
-        </form>
+<div class="container h-100">
+    <div class="d-flex justify-content-center h-100">
+        <div class="searchbar">
+            <button class="btn btn-default">
+                <span class="fas fa-search" aria-hidden="true"></span>
+            </button>
+            <input class="search_input" type="text" placeholder="Search..">
+        </div>
     </div>
 </div>
 
-@{
-    var titles = new Movie();
-}
-
-@{
-    if (Model.Total_Results != 0)
-    {
-
-        <div class="row mt-3">
-            <div class="col table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">@nameof(titles.Id)</th>
-                            <th scope="col">@nameof(titles.Adult)</th>
-                            <th scope="col">@nameof(titles.Backdrop_Path)</th>
-                            @*<th scope="col">@nameof(titles.Genre_Ids)</th>*@
-                            <th scope="col">@nameof(titles.Original_Language)</th>
-                            <th scope="col">@nameof(titles.Original_Title)</th>
-                            <th scope="col" class="clearfix">@nameof(titles.Overview)</th>
-                            <th scope="col">@nameof(titles.Popularity)</th>
-                            <th scope="col">@nameof(titles.Poster_Path)</th>
-                            <th scope="col">@nameof(titles.Release_Date)</th>
-                            <th scope="col">@nameof(titles.Title)</th>
-                            <th scope="col">@nameof(titles.Video)</th>
-                            <th scope="col">@nameof(titles.Vote_Average)</th>
-                            <th scope="col">@nameof(titles.Vote_Count)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var searchModel in Model.Results)
-                        {
-                            <tr>
-                                <th scope="row">@searchModel.Id</th>
-                                <td>@searchModel.Adult</td>
-                                <td>@searchModel.Backdrop_Path</td>
-                                @*<td>@{string.Join(",", searchModel.Genre_Ids.Select(i => i.ToString()))}</td>*@
-                                <td>@searchModel.Original_Language</td>
-                                <td>@searchModel.Original_Title</td>
-                                <td class="clearfix">@searchModel.Overview</td>
-                                <td>@searchModel.Popularity</td>
-                                <td>@searchModel.Poster_Path</td>
-                                <td>@searchModel.Release_Date.ToString("dd.MM.yyyy")</td>
-                                <td>@searchModel.Title</td>
-                                <td>@searchModel.Video</td>
-                                <td>@searchModel.Vote_Average</td>
-                                <td>@searchModel.Vote_Count</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-    }
-}
-
-@*@{
-        if (Model.Total_Results != 0)
-        {
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        }
-    }*@
+<div class="row">
+    <div class="col-md-4">
+        <h2>Burak Yücel</h2>
+        <p>
+           Latino lover
+        </p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Ali Yıldızöz</h2>
+        <p>Sert sert</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Umut Bozdağ</h2>
+        <p>bruh</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Ayberk Düzova</h2>
+        <p>Barış brağ</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    </div>
+</div>

@@ -1,9 +1,9 @@
-﻿/// <binding ProjectOpened='watch' />
+﻿/// <binding ProjectOpened='watch:views' />
 module.exports = function (grunt) {
     grunt.initConfig({
         clean: ["wwwroot/lib/*", "temp/"],
         concat: {
-            dist: {
+            all: {
                 src: ['wwwroot/js/*.js'],
                 dest: 'temp/combined.js'
             }
@@ -11,7 +11,7 @@ module.exports = function (grunt) {
         jshint: {
             files: ['temp/*.js'],
             options: {
-                '-W069': false,
+                '-W069': false
             }
         },
         uglify: {
@@ -22,7 +22,7 @@ module.exports = function (grunt) {
         },
         watch: {
             scripts: {
-                files: ['wwwroot/js/*.js'],
+                files: ['wwwroot/js/*.js', 'temp/*.js'],
                 tasks: ['all'],
                 options: {
                     spawn: false
@@ -30,8 +30,27 @@ module.exports = function (grunt) {
             },
             css: {
                 files: ['wwwroot/css/*.css'],
-                tasks: ['all']
+                tasks: ['cssmin']
             }
+            //,
+            //views: {
+            //    files: [
+            //        'Views/**/*.cshtml',
+            //        'wwwroot/js/*.js',
+            //        'wwwroot/css/*.css',
+            //        'bin/**/*.dll'
+            //    ],
+            //    options: {
+            //        livereload: {
+            //            host: 'localhost',
+            //            port: 44363,
+            //            key: grunt.file.read('path/to/ssl.key'),
+            //            cert: grunt.file.read('path/to/ssl.crt')
+            //            // you can pass in any other options you'd like to the https server, as listed here: http://nodejs.org/api/tls.html#tls_tls_createserver_options_secureconnectionlistener
+            //        }
+            //    }
+            //}
+
         },
         cssmin: {
             target: {
@@ -46,6 +65,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.registerTask("all", ['clean', 'concat', 'jshint', 'uglify', 'cssmin']);
+    grunt.registerTask("all", ['clean', 'concat', 'jshint', 'uglify']);
 
 };

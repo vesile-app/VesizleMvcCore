@@ -11,7 +11,7 @@ using VesizleMvcCore.NodejsApi.ApiResults;
 
 namespace VesizleMvcCore.NodejsApi.Api
 {
-    public class MoviesApi :  IMovieService
+    public class MoviesApi : IMovieService
     {
 
         private static string ApiPath = "movies/";
@@ -24,7 +24,7 @@ namespace VesizleMvcCore.NodejsApi.Api
         {
             var url = ApiPath + "popular";
             var res = await _httpClient.GetAsync(url);
-            
+
             if (res.IsSuccessStatusCode)
             {
                 var result = await res.Content.ReadAsStringAsync();
@@ -34,7 +34,33 @@ namespace VesizleMvcCore.NodejsApi.Api
 
             return new ApiPopularResult();
         }
+        public async Task<ApiMovieDetailsResult> GetDiscoverAsync()
+        {
+            var url = ApiPath + id.ToString();
+            var res = await _httpClient.GetAsync(url);
 
-       
+            if (res.IsSuccessStatusCode)
+            {
+                var result = await res.Content.ReadAsStringAsync();
+                var jsonDeserialize = JsonHelper.Deserialize<ApiMovieDetailsResult>(result);
+                return jsonDeserialize;
+            }
+
+            return new ApiMovieDetailsResult();
+        }
+        public async Task<ApiMovieDetailsResult> GetDetailsAsync(int id)
+        {
+            var url = ApiPath + id.ToString();
+            var res = await _httpClient.GetAsync(url);
+
+            if (res.IsSuccessStatusCode)
+            {
+                var result = await res.Content.ReadAsStringAsync();
+                var jsonDeserialize = JsonHelper.Deserialize<ApiMovieDetailsResult>(result);
+                return jsonDeserialize;
+            }
+
+            return new ApiMovieDetailsResult();
+        }
     }
 }

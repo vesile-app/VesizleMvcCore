@@ -6,17 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Scripts\site.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Scripts\site.js">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
   </ItemGroup>
 

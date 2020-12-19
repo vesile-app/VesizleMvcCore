@@ -1,71 +1,50 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+﻿html body {
+    padding-top: 0px;
+    background-image: url(https://i.imgur.com/BNAJ4cQ.png);
 }
 
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
+.navbar {
+    background-image: url(https://i.imgur.com/t89NYoH.png);
+    height: 138px;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+.navbar-header {
+    text-align: center;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+.login_Btn {
+    padding: 4px 10px;
+    text-align: right;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  font-size: 14px;
+#loginBtn {
+    width: 6%;
+    -moz-box-shadow: inset 0 0 3px #000000;
+    -webkit-box-shadow: inset 0 0 3px #000000;
+    box-shadow: inset 0 0 3px #000000;
 }
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+.searchbar {
+    margin-bottom: auto;
+    margin-top: 9%;
+    height: 70px;
+    width: 600px;
+    background-color: white;
+    border-radius: 100px;
+    padding: 12px;
+    -moz-box-shadow: inset 0 0 3px #000000;
+    -webkit-box-shadow: inset 0 0 3px #000000;
+    box-shadow: inset 0 0 5px #696969;
 }
 
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+.search_input {
+    color: navy;
+    border: 0;
+    outline: 0;
+    background: none;
+    line-height: 40px;
+    margin-left: 5px;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-}
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+.searchbar:focus-within {
+    border: 1.5px solid #ffa500;
 }

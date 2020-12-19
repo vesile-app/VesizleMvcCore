@@ -10,5 +10,6 @@ namespace VesizleMvcCore.NodejsApi.Api.Abstract
     interface IMovieService
     {
         Task<ApiPopularResult> GetPopularAsync();
+        Task<ApiMovieDetailsResult> GetDetailsAsync(int id);
     }
 }
