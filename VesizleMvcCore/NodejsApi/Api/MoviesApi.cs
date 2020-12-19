@@ -34,19 +34,19 @@ namespace VesizleMvcCore.NodejsApi.Api
 
             return new ApiPopularResult();
         }
-        public async Task<ApiDiscoverResult> GetDiscoverAsync()
+        public async Task<ApiMovieDetailsResult> GetDiscoverAsync()
         {
-            var url = ApiPath + "discover";
+            var url = ApiPath + id.ToString();
             var res = await _httpClient.GetAsync(url);
 
             if (res.IsSuccessStatusCode)
             {
                 var result = await res.Content.ReadAsStringAsync();
-                var jsonDeserialize = JsonHelper.Deserialize<ApiDiscoverResult>(result);
+                var jsonDeserialize = JsonHelper.Deserialize<ApiMovieDetailsResult>(result);
                 return jsonDeserialize;
             }
 
-            return new ApiDiscoverResult();
+            return new ApiMovieDetailsResult();
         }
         public async Task<ApiMovieDetailsResult> GetDetailsAsync(int id)
         {
