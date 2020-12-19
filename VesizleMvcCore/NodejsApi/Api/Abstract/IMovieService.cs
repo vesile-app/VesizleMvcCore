@@ -7,9 +7,11 @@ using VesizleMvcCore.NodejsApi.ApiResults;
 
 namespace VesizleMvcCore.NodejsApi.Api.Abstract
 {
-    interface IMovieService
+    public interface IMovieService
     {
         Task<ApiPopularResult> GetPopularAsync();
         Task<ApiMovieDetailsResult> GetDetailsAsync(int id);
+        Task<ApiDiscoverResult> GetDiscoverAsync();
+
     }
 }

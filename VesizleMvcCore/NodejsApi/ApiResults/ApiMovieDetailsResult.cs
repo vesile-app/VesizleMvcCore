@@ -9,7 +9,6 @@ namespace VesizleMvcCore.NodejsApi.ApiResults
     public class ApiMovieDetailsResult
     {
         public bool Adult { get; set; }
-        public List<ProductionCompany> Production_Companies { get; set; }
         public string Backdrop_Path { get; set; }
         public List<BelongsToCollection> Belongs_To_Collection { get; set; }
         public int Budget { get; set; }
@@ -23,6 +22,7 @@ namespace VesizleMvcCore.NodejsApi.ApiResults
         public decimal Popularity { get; set; }
         public string Poster_Path { get; set; }
         public List<ProductionCountry> Production_Countries { get; set; }
+        public List<ProductionCompany> Production_Companies { get; set; }
         public DateTime Release_Date { get; set; }
         public int Revenue { get; set; }
         public int Runtime{ get; set; }

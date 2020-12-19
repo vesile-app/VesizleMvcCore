@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Vesizle.NodejsApi.Entities
+namespace VesizleMvcCore.NodejsApi.Entities
 {
-    public class Movie
+    public class DiscoveryMovie
     {
         public bool Adult { get; set; }
         public string Backdrop_Path { get; set; }
@@ -18,6 +21,5 @@ namespace Vesizle.NodejsApi.Entities
         public bool Video { get; set; }
         public decimal Vote_Average { get; set; }
         public decimal Vote_Count { get; set; }
-
     }
 }
