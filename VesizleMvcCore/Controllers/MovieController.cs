@@ -16,7 +16,7 @@ namespace VesizleMvcCore.Controllers
             _movieService = movieService;
         }
        
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<IActionResult> Details(int id)
         {
             var result = await _movieService.GetDetailsAsync(id);

@@ -11,6 +11,8 @@
     "grunt-contrib-uglify": "5.0.0",
     "grunt-contrib-watch": "1.1.0",
     "grunt-contrib-cssmin": "3.0.0",
-    "jquery": "3.5.0"
+    "jquery": "3.5.0",
+    "jquery-validation": "1.19.2",
+    "jquery-validation-unobtrusive": "3.2.11"
   }
 }

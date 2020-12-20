@@ -38,6 +38,7 @@ namespace VesizleMvcCore
                  client.BaseAddress = new Uri(AppConstants.NodeJsApiUrl);
                  client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
              });
+            services.AddScoped<IAuthService, AuthApi>();
             services.AddScoped<ISearchService, SearchApi>();
             services.AddScoped<IMovieService, MoviesApi>();
         }
