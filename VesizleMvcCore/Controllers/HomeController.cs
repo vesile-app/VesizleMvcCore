@@ -20,7 +20,7 @@ namespace VesizleMvcCore.Controllers
             _searchService = searchService;
             _movieService = movieService;
         }
-
+        [HttpGet]
         public IActionResult Index()
         {
             return View(new ApiSearchResult());

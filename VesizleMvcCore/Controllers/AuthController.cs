@@ -2,19 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using VesizleMvcCore.Models;
 using VesizleMvcCore.NodejsApi.Api.Abstract;
+using VesizleMvcCore.NodejsApi.Dtos;
 
 namespace VesizleMvcCore.Controllers
 {
     public class AuthController : Controller
     {
         private IAuthService _authService;
-
-        public AuthController(IAuthService authService)
+        private IMapper _mapper;
+        public AuthController(IAuthService authService, IMapper mapper)
         {
             _authService = authService;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -27,11 +30,18 @@ namespace VesizleMvcCore.Controllers
         {
             if (!ModelState.IsValid)
             {
-
                 return View(model);
             }
 
-            return Content("Success");
+            var dto = _mapper.Map<UserForLoginDto>(model);
+            var result = await _authService.LoginAsync(dto);
+            if (!result.IsSuccessful)
+            {
+                ModelState.AddModelError("Email", result.Message);
+                return View(model);
+            }
+
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]

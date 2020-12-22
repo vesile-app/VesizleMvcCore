@@ -10,12 +10,12 @@
             <div class="login100-pic js-tilt" data-tilt>
                 <img src="https://cdn.discordapp.com/attachments/767792433353195581/788838300370075678/aybo-01.png" alt="IMG">
             </div>
-
+           
             <form asp-action="Login" class="login100-form validate-form">
                 <span class="login100-form-title">
                     Member Login
                 </span>
-
+                
                 <div class="wrap-input100 validate-input">
                     <input class="input100" asp-for="Email" name="Email" placeholder="Email">
                     <span class="focus-input100"></span>
@@ -23,7 +23,7 @@
                         <i class="fas fa-user" area-hidden="true"></i>
                     </span>
                 </div>
-                <span asp-validation-for="Email" class="text-danger"></span>
+                <span asp-validation-for="Email"  class="text-danger"></span>
                 <div class="wrap-input100 validate-input">
                     <input class="input100" type="password" asp-for="Password" name="Password" placeholder="Password">
                     <span class="focus-input100"></span>

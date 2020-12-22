@@ -23,5 +23,13 @@ namespace VesizleMvcCore.Helpers
             string jsonText = JsonSerializer.Serialize(obj);
             return jsonText;
         }
+        public static string Serialize<T>(T obj)
+        {
+            string jsonText = JsonSerializer.Serialize<T>(obj, new JsonSerializerOptions()
+            {
+                PropertyNameCaseInsensitive = true
+            });
+            return jsonText;
+        }
     }
 }
