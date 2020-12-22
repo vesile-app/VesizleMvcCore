@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - VesizleMvcCore</title>
     @*<link href="~/lib/vesile.min.css" rel="stylesheet" />*@
+    @*@Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")*@
     <link href="~/css/login.css" rel="stylesheet" />
-    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/home.css" rel="stylesheet" />
     <link href="~/css/util.css" rel="stylesheet" />
+    <link href="~/css/navbar.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="~/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/node_modules/bootstrap/dist/css/bootstrap-grid.min.css" rel="stylesheet" />
@@ -16,20 +19,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 </head>
 <body>
-    <header>
-        <div class="navbar navbar-light ">
-            <div class="container">
-                <div class="navbar-header fixed-top">
-                    @Html.ActionLink("Vesile", "Index", "Home", new { area = "" }, new { @class = "navbar-brand text-warning bg-transparent" })
-                </div>
-                <div class="login_Btn fixed-top ">
-                    <button id="loginBtn" type="button" class="btn btn-outline-warning btn-light ">@Html.ActionLink("Login", "Login", "Auth")</button>
-
-
-                </div>
-            </div>
-        </div>
-    </header>
+    <nav class="navbar">
+        <a class="navbar-brand text-warning mx-auto" href="@Url.Action("Index", "Home")">Vesile</a>
+        <button id="loginBtn" class="btn btn-outline-warning btn-light navbar-right my-2 my-sm-0" type="submit">@Html.ActionLink("Login", "Login", "Auth")</button>
+    </nav>
+    <div class="stickyFrame"></div>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
