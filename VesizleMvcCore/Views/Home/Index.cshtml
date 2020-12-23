@@ -21,23 +21,27 @@
     <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4">
         @foreach (var popularMovie in Model.PopularMovies)
         {
-            <div class="col-2">
-                <div class="card" id="card-block">
+            @if (popularMovie.Title.Length < 15)
+            {
+                <div class="col-2">
+                    <div class="card" id="card-block">
 
-                    <div class="content">
-                        <h6><a  href="/Movie/Details/@popularMovie.MovieId" title="@popularMovie.Title">@popularMovie.Title</a></h6>
-                    </div>
-                    <div class="image">
-                        <a class="image "  href="/movie/details/@popularMovie.MovieId" title="@popularMovie.Title">
-                            <img class="poster" src="@(popularMovie.PosterUrl)">
-                        </a>
-                    </div>
-                    <div class="imdb">
-                        <h6><a  href="/movie/details/@popularMovie.MovieId">@popularMovie.VoteAverage</a></h6>
-                    </div>
+                        <div class="content">
+                            <h6><a href="/Movie/Details/@popularMovie.MovieId" title="@popularMovie.Title">@popularMovie.Title</a></h6>
+                        </div>
+                        <div class="image">
+                            <a class="image " href="/movie/details/@popularMovie.MovieId" title="@popularMovie.Title">
+                                <img class="poster" src="@(popularMovie.PosterUrl)">
+                            </a>
+                        </div>
+                        <div class="imdb">
+                            <h6><a href="/movie/details/@popularMovie.MovieId">@popularMovie.VoteAverage</a></h6>
+                        </div>
 
+                    </div>
                 </div>
-            </div>
+            }
+
         }
 
     </div>
@@ -50,23 +54,27 @@
 
         @foreach (var discoveryMovie in Model.DiscoveryMovies)
         {
-            <div class="col-2">
-                <div class="card" id="card-block">
+            @if (discoveryMovie.Title.Length < 15)
+            {
 
-                    <div class="content">
-                        <h6><a  href="/movie/details/@discoveryMovie.MovieId" title="@discoveryMovie.Title">@discoveryMovie.Title</a></h6>
-                    </div>
-                    <div class="image">
-                        <a class="image " href="/movie/details/@discoveryMovie.MovieId" title="@discoveryMovie.Title">
-                            <img class="poster" src="@(discoveryMovie.PosterUrl)">
-                        </a>
-                    </div>
-                    <div class="imdb">
-                        <h6><a href="/movie/details/@discoveryMovie.MovieId">@discoveryMovie.VoteAverage</a></h6>
-                    </div>
+                <div class="col-2">
+                    <div class="card" id="card-block">
 
+                        <div class="content">
+                            <h6><a href="/movie/details/@discoveryMovie.MovieId" title="@discoveryMovie.Title">@discoveryMovie.Title</a></h6>
+                        </div>
+                        <div class="image">
+                            <a class="image " href="/movie/details/@discoveryMovie.MovieId" title="@discoveryMovie.Title">
+                                <img class="poster" src="@(discoveryMovie.PosterUrl)">
+                            </a>
+                        </div>
+                        <div class="imdb">
+                            <h6><a href="/movie/details/@discoveryMovie.MovieId">@discoveryMovie.VoteAverage</a></h6>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
+            }
         }
     </div>
 </div>
