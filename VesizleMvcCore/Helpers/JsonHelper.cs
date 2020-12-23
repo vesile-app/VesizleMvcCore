@@ -13,7 +13,6 @@ namespace VesizleMvcCore.Helpers
         {
             T result = JsonSerializer.Deserialize<T>(jsonText, new JsonSerializerOptions()
             {
-
                 PropertyNameCaseInsensitive = true
             });
             return result;

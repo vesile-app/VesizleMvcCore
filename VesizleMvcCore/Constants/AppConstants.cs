@@ -9,5 +9,7 @@ namespace VesizleMvcCore.Constants
     {
         public static string HttpClientKey = "nodejs-api";
         public static string NodeJsApiUrl = "http://localhost:3000/";
+
+        public static string BasePosterUrl = "https://image.tmdb.org/t/p/w500";
     }
 }

@@ -1,5 +1,6 @@
 ﻿@using Vesizle.NodejsApi.Entities
-@model VesizleMvcCore.NodejsApi.ApiResults.ApiSearchResult
+@using VesizleMvcCore.Constants
+@model HomeIndexViewModel
 @{
     ViewBag.Title = "Home Page";
 }
@@ -18,83 +19,27 @@
 <div class="row m-t-110 filmBg">
     <h2 class="m-b-8">Popular</h2>
     <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4">
+        @foreach (var popularMovie in Model.PopularMovies)
+        {
+            <div class="col-2">
+                <div class="card" id="card-block">
 
-        <div class="col-2">
-            <div class="card" id="card-block">
+                    <div class="content">
+                        <h6><a  href="/Movie/Details/@popularMovie.MovieId" title="@popularMovie.Title">@popularMovie.Title</a></h6>
+                    </div>
+                    <div class="image">
+                        <a class="image "  href="/movie/details/@popularMovie.MovieId" title="@popularMovie.Title">
+                            <img class="poster" src="@(popularMovie.PosterUrl)">
+                        </a>
+                    </div>
+                    <div class="imdb">
+                        <h6><a  href="/movie/details/@popularMovie.MovieId">@popularMovie.VoteAverage</a></h6>
+                    </div>
 
-                <div class="content">
-                    <h6><a href="/movie/636565?language=tr" title="Rose Adası'nın İnanılmaz Hikayesi">Rose Adası'nın İnanılmaz Hikayesi</a></h6>
                 </div>
-                <div class="image">
-                    <a class="image " href="/movie/636565?language=tr" title="Rose Adası'nın İnanılmaz Hikayesi">
-                        <img class="poster" src="//image.tmdb.org/t/p/w220_and_h330_face/6Q5cfHddcKyC4KBKOzZeQ5hI55N.jpg">
-                    </a>
-                </div>
-                <div class="imdb">
-                    <h6><a href="/movie/636565?language=tr">İMDB Puanı : 8.2</a></h6>
-                </div>
-
             </div>
-        </div>
-        <div class="col-2">
-            <div class="card card-2" id="card-block">
+        }
 
-
-                <div class="content">
-                    <h6><a href="/movie/636565?language=tr" title="Rose Adası'nın İnanılmaz Hikayesi">Rose Adası'nın İnanılmaz Hikayesi</a></h6>
-                </div>
-                <div class="image">
-                    <a class="image " href="/movie/636565?language=tr" title="Rose Adası'nın İnanılmaz Hikayesi">
-                        <img class="poster" src="//image.tmdb.org/t/p/w220_and_h330_face/6Q5cfHddcKyC4KBKOzZeQ5hI55N.jpg">
-                    </a>
-                </div>
-                <div class="imdb">
-                    <h6><a href="/movie/636565?language=tr">İMDB Puanı : 8.2</a></h6>
-                </div>
-
-
-
-            </div>
-        </div>
-        <div class="col-2">
-            <div class="card card-3" id="card-block">
-
-
-                <div class="content">
-                    <h6><a href="/movie/636565?language=tr" title="İnanılmaz ">İnanılmaz</a></h6>
-                </div>
-                <div class="image">
-                    <a class="image " href="/movie/636565?language=tr" title="Rose Adası'nın İnanılmaz Hikayesi">
-                        <img class="poster" src="//image.tmdb.org/t/p/w220_and_h330_face/6Q5cfHddcKyC4KBKOzZeQ5hI55N.jpg">
-                    </a>
-                </div>
-                <div class="imdb">
-                    <h6><a href="/movie/636565?language=tr">İMDB Puanı : 8.2</a></h6>
-                </div>
-
-            </div>
-        </div>
-        <div class="col-2">
-            <div class="card card-4"></div>
-        </div>
-        <div class="col-2">
-            <div class="card card-5"></div>
-        </div>
-        <div class="col-2">
-            <div class="card card-6"></div>
-        </div>
-        <div class="col-2">
-            <div class="card card-7"></div>
-        </div>
-        <div class="col-2">
-            <div class="card card-8"></div>
-        </div>
-        <div class="col-2">
-            <div class="card card-9"></div>
-        </div>
-        <div class="col-2">
-            <div class="card card-10"></div>
-        </div>
     </div>
 
 </div>
@@ -103,81 +48,25 @@
     <h2 class="m-b-8">In Theater</h2>
     <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4">
 
-        <div class="col-2">
-            <div class="card" id="card-block">
+        @foreach (var discoveryMovie in Model.DiscoveryMovies)
+        {
+            <div class="col-2">
+                <div class="card" id="card-block">
 
-                <div class="content">
-                    <h6><a href="/movie/636565?language=tr" title="Rose Adası'nın İnanılmaz Hikayesi">Rose Adası'nın İnanılmaz Hikayesi</a></h6>
-                </div>
-                <div class="image">
-                    <a class="image " href="/movie/636565?language=tr" title="Rose Adası'nın İnanılmaz Hikayesi">
-                        <img class="poster" src="//image.tmdb.org/t/p/w220_and_h330_face/6Q5cfHddcKyC4KBKOzZeQ5hI55N.jpg">
-                    </a>
-                </div>
-                <div class="imdb">
-                    <h6><a href="/movie/636565?language=tr">İMDB Puanı : 8.2</a></h6>
-                </div>
+                    <div class="content">
+                        <h6><a  href="/movie/details/@discoveryMovie.MovieId" title="@discoveryMovie.Title">@discoveryMovie.Title</a></h6>
+                    </div>
+                    <div class="image">
+                        <a class="image " href="/movie/details/@discoveryMovie.MovieId" title="@discoveryMovie.Title">
+                            <img class="poster" src="@(discoveryMovie.PosterUrl)">
+                        </a>
+                    </div>
+                    <div class="imdb">
+                        <h6><a href="/movie/details/@discoveryMovie.MovieId">@discoveryMovie.VoteAverage</a></h6>
+                    </div>
 
+                </div>
             </div>
-        </div>
-        <div class="col-2">
-            <div class="card card-2" id="card-block">
-
-
-                <div class="content">
-                    <h6><a href="/movie/636565?language=tr" title="Rose Adası'nın İnanılmaz Hikayesi">Rose Adası'nın İnanılmaz Hikayesi</a></h6>
-                </div>
-                <div class="image">
-                    <a class="image " href="/movie/636565?language=tr" title="Rose Adası'nın İnanılmaz Hikayesi">
-                        <img class="poster" src="//image.tmdb.org/t/p/w220_and_h330_face/6Q5cfHddcKyC4KBKOzZeQ5hI55N.jpg">
-                    </a>
-                </div>
-                <div class="imdb">
-                    <h6><a href="/movie/636565?language=tr">İMDB Puanı : 8.2</a></h6>
-                </div>
-
-
-
-            </div>
-        </div>
-        <div class="col-2">
-            <div class="card card-3" id="card-block">
-
-
-                <div class="content">
-                    <h6><a href="/movie/636565?language=tr" title="İnanılmaz ">İnanılmaz</a></h6>
-                </div>
-                <div class="image">
-                    <a class="image " href="/movie/636565?language=tr" title="Rose Adası'nın İnanılmaz Hikayesi">
-                        <img class="poster" src="//image.tmdb.org/t/p/w220_and_h330_face/6Q5cfHddcKyC4KBKOzZeQ5hI55N.jpg">
-                    </a>
-                </div>
-                <div class="imdb">
-                    <h6><a href="/movie/636565?language=tr">İMDB Puanı : 8.2</a></h6>
-                </div>
-
-            </div>
-        </div>
-        <div class="col-2">
-            <div class="card card-4"></div>
-        </div>
-        <div class="col-2">
-            <div class="card card-5"></div>
-        </div>
-        <div class="col-2">
-            <div class="card card-6"></div>
-        </div>
-        <div class="col-2">
-            <div class="card card-7"></div>
-        </div>
-        <div class="col-2">
-            <div class="card card-8"></div>
-        </div>
-        <div class="col-2">
-            <div class="card card-9"></div>
-        </div>
-        <div class="col-2">
-            <div class="card card-10"></div>
-        </div>
+        }
     </div>
 </div>

@@ -8,6 +8,7 @@ using VesizleMvcCore.Constants;
 using VesizleMvcCore.Helpers;
 using VesizleMvcCore.NodejsApi.Api.Abstract;
 using VesizleMvcCore.NodejsApi.ApiResults;
+using VesizleMvcCore.NodejsApi.ApiResults.Results;
 
 namespace VesizleMvcCore.NodejsApi.Api
 {
@@ -22,12 +23,12 @@ namespace VesizleMvcCore.NodejsApi.Api
         }
         public async Task<ApiPopularResult> GetPopularAsync()
         {
-            var url = ApiPath + "popular";
-            var res = await _httpClient.GetAsync(url);
+            var popularUrl = ApiPath + "popular";
+            var populaRes = await _httpClient.GetAsync(popularUrl);
 
-            if (res.IsSuccessStatusCode)
+            if (populaRes.IsSuccessStatusCode)
             {
-                var result = await res.Content.ReadAsStringAsync();
+                var result = await populaRes.Content.ReadAsStringAsync();
                 var jsonDeserialize = JsonHelper.Deserialize<ApiPopularResult>(result);
                 return jsonDeserialize;
             }
@@ -36,19 +37,19 @@ namespace VesizleMvcCore.NodejsApi.Api
         }
         public async Task<ApiDiscoverResult> GetDiscoverAsync()
         {
-            var url = ApiPath + "discovery";
-            var res = await _httpClient.GetAsync(url);
+            var discoverUrl = ApiPath + "discover";
+            var discoverRes = await _httpClient.GetAsync(discoverUrl);
 
-            if (res.IsSuccessStatusCode)
+            if (discoverRes.IsSuccessStatusCode)
             {
-                var result = await res.Content.ReadAsStringAsync();
+                var result = await discoverRes.Content.ReadAsStringAsync();
                 var jsonDeserialize = JsonHelper.Deserialize<ApiDiscoverResult>(result);
                 return jsonDeserialize;
             }
 
             return new ApiDiscoverResult();
         }
-        public async Task<ApiMovieDetailsResult> GetDetailsAsync(int id)
+        public async Task<IDataResult<ApiMovieDetailsResult>> GetDetailsAsync(int id)
         {
             var url = ApiPath + id.ToString();
             var res = await _httpClient.GetAsync(url);
@@ -57,10 +58,10 @@ namespace VesizleMvcCore.NodejsApi.Api
             {
                 var result = await res.Content.ReadAsStringAsync();
                 var jsonDeserialize = JsonHelper.Deserialize<ApiMovieDetailsResult>(result);
-                return jsonDeserialize;
+                return new SuccessDataResult<ApiMovieDetailsResult>(jsonDeserialize);
             }
 
-            return new ApiMovieDetailsResult();
+            return new ErrorDataResult<ApiMovieDetailsResult>();
         }
     }
 }

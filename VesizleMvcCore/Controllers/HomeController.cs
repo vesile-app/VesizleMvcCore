@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using VesizleMvcCore.Models;
@@ -15,22 +16,31 @@ namespace VesizleMvcCore.Controllers
     {
         private ISearchService _searchService;
         private IMovieService _movieService;
-        public HomeController(ISearchService searchService, IMovieService movieService)
+        private IMapper _mapper;
+        public HomeController(ISearchService searchService, IMovieService movieService, IMapper mapper)
         {
             _searchService = searchService;
             _movieService = movieService;
+            _mapper = mapper;
         }
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View(new ApiSearchResult());
+            HomeIndexViewModel model = new HomeIndexViewModel();
+
+            var popularAsync = await _movieService.GetPopularAsync();
+            var discoverAsync = await _movieService.GetDiscoverAsync();
+
+            model.PopularMovies = _mapper.Map<List<PopularCardModel>>(popularAsync.Results);
+            model.DiscoveryMovies = _mapper.Map<List<DiscoverCardModel>>(discoverAsync.Results);
+            return View(model);
         }
         [HttpPost]
         public async Task<ActionResult> Index(string query, int page = 1)
         {
             var result = await _searchService.SearchAsync(query);
 
-            return View(result);
+            return View();
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -52,7 +52,20 @@ namespace VesizleMvcCore.Controllers
         [HttpPost]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var dto = _mapper.Map<UserForLoginDto>(model);
+            var result = await _authService.LoginAsync(dto);
+            if (!result.IsSuccessful)
+            {
+                ModelState.AddModelError("Email", result.Message);
+                return View(model);
+            }
+
+            return RedirectToAction("Index", "Home");
         }
         [HttpGet]
         public void Logout()
