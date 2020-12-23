@@ -3,6 +3,10 @@
     -moz-osx-font-smoothing: grayscale;
     padding-top: 0px;
     background-image: url(https://i.imgur.com/BNAJ4cQ.png);
+    font-family: 'Jura', sans-serif;
+}
+a {
+    font-family: 'Jura', sans-serif;
 }
 
 .navbar {
