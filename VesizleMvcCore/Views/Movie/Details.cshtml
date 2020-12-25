@@ -4,33 +4,21 @@
     ViewBag.Title = "title";
 }
 
+<div class="ticket m-t-70">
+    <div class="ticket1">
+        <h2 class="movie-title">@Model.Title</h2>
+        <img class="detailsPoster" src="@Model.PosterUrl">
+    </div>
+    <div class="ticket2">
+        <iframe class="detailsYoutube" width="800" height="480" src="https://www.youtube.com/embed/AZGcmvrTX9M" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+</div>
 
-<div class="container">
+<div class="movieInfoBg m-t-80">
+    <div class="container p-b-40 p-t-40 movieInfo ">
+        <h3 class="p-b-10">Overview</h3>
+        <h5 class="font-italic">&emsp; @Model.Overview</h5>
+    </div>
+</div>
 
-
-    <div class="movie-card">
-        <div class="movie-header manOfSteel">
-            <div class="header-icon-container">
-                <a href="#">
-                    <i class="material-icons header-icon"></i>
-                </a>
-            </div>
-        </div><!--movie-header-->
-        <div class="movie-content">
-            <div class="movie-content-header">
-
-                <h3 class="movie-title">@Model.Title</h3>
-
-                <div class="imax-logo"><img src="@Model.PosterUrl"/></div>
-            </div>
-            <div class="movie-info">
-                <div class="info-section">
-                    <label>Overview</label>
-                    <p>@Model.Overview</p>
-                </div><!--date,time-->
-            </div>
-        </div><!--movie-content-->
-    </div><!--movie-card-->
-
-
-</div><!--container-->

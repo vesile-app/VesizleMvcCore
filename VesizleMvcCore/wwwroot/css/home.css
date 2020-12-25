@@ -60,8 +60,8 @@
 
 .imdb {
     position: absolute;
-    bottom: 4px;
-    left: 15px;
+    bottom: 2px;
+    left: 50px;
     min-height: 38px;
     z-index: 1;
     

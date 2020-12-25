@@ -6,11 +6,12 @@
     <title>@ViewData["Title"] - VesizleMvcCore</title>
     @*<link href="~/lib/vesile.min.css" rel="stylesheet" />*@
     @*@Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")*@
+        @Scripts.Render("~/bundles/modernizr")*@
     <link href="~/css/login.css" rel="stylesheet" />
     <link href="~/css/home.css" rel="stylesheet" />
-    <link href="~/css/util.css" rel="stylesheet" />
     <link href="~/css/navbar.css" rel="stylesheet" />
+    <link href="~/css/movieDetails.css" rel="stylesheet" />
+    <link href="~/css/util.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="~/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/node_modules/bootstrap/dist/css/bootstrap-grid.min.css" rel="stylesheet" />
@@ -22,7 +23,7 @@
 <body>
     <nav class="navbar">
         <a class="navbar-brand text-warning mx-auto" href="@Url.Action("Index", "Home")">Vesile</a>
-        <button id="loginBtn" class="btn btn-outline-warning btn-light navbar-right my-2 my-sm-0" type="submit">@Html.ActionLink("Login", "Login", "Auth")</button>
+        <input type="button" value="Login" id="loginBtn" class="btn btn-outline-warning btn-light navbar-right my-2 my-sm-0" onclick="location.href='@Url.Action("Login", "Auth")'" />
     </nav>
     <div class="stickyFrame"></div>
     <div class="container">
