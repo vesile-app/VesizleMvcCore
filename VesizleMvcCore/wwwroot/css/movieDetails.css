@@ -1,0 +1,85 @@
+﻿.ticket1 {
+    background-image: url(https://i.imgur.com/BrdhUjb.png);
+    position: absolute;
+    margin-top: -1px;
+    margin-left: -100px;
+    height: 570px;
+    width: 383px;
+}
+
+.ticket2 {
+    background-image: url(https://i.imgur.com/OcvitAd.png);
+    margin-left: 283px;
+    width: 953px;
+    height: 570px;
+}
+
+.detailsPoster {
+    transition: all 0.5s ease;
+    height: 60%;
+    margin: 120px 0px 0px 100px;
+    border-radius: 3px;
+    box-shadow: 1px 2px 3px #696969;
+}
+
+.detailsYoutube {
+    position: absolute;
+    margin: 40px 0px 0px 60px;
+    border-radius: 25px;
+    box-shadow: 1px 2px 3px #696969;
+}
+
+.movie-title {
+    position: absolute;
+    margin: 45px 0px 0px 65px;
+    width: 300px;
+    height: 70px;
+    text-align: center;
+    text-shadow: 0px 0px 1.5px #ffa500;
+}
+
+.detailsPoster:hover {
+    transition: all 0.5s ease;
+    box-shadow: 0px 0px 10px #ffa500;
+    rotation: 360deg;
+}
+.ticket:hover {
+    animation: shake 0.3s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+}
+
+@keyframes shake {
+    10%, 100% {
+        transform: translate3d(0px, 0, 0);
+    }
+
+    20%, 80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    40%, 60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+.ticket:hover > .ticket1 {
+    animation-timing-function: ease;
+    animation: anim 1.5s forwards;
+}
+
+@keyframes anim {
+    100% {
+        transform-origin: 100% 90%;
+        transform: rotate(-15deg);
+    }
+}
+
+.movieInfoBg {
+    background-color: white;
+    width: 20000px;
+    margin-left: -9440px;
+    box-shadow: inset 0px 0px 8px #696969;
+}
+
+
