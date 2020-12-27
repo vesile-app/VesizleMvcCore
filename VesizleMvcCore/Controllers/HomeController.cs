@@ -47,11 +47,10 @@ namespace VesizleMvcCore.Controllers
             return View(model);
         }
         [HttpPost]
-        public async Task<ActionResult> Index(string query, int page = 1)
+        public async Task<ActionResult> Index(string query)
         {
-            var result = await _searchService.SearchAsync(query);
 
-            return View();
+            return RedirectToAction("Index", "Search", new { query});
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

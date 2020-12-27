@@ -1,0 +1,12 @@
+﻿@model SearchViewModel
+
+@{
+    ViewBag.Title = "Search Detail";
+}
+
+<div>
+    @foreach (var item in Model.Results)
+    {
+        <div>@item.Title</div>
+    }
+</div>
