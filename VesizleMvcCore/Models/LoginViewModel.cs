@@ -15,5 +15,7 @@ namespace VesizleMvcCore.Models
 
         [Required(ErrorMessage = "şifre alanı gereklidir.")]
         public string Password { get; set; }
+        
+        public bool RememberMe { get; set; }
     }
 }

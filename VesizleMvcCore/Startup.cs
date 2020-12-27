@@ -40,7 +40,7 @@ namespace VesizleMvcCore
         {
             services.AddDbContext<VesizleIdentityDbContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddIdentity<VesizleUser, IdentityRole>().AddEntityFrameworkStores<VesizleIdentityDbContext>()
-                .AddDefaultTokenProviders();
+                .AddDefaultTokenProviders().AddDefaultTokenProviders(); ;
 
             services.AddTransient<IPasswordValidator<VesizleUser>, CustomPasswordPolicy>();
             services.AddTransient<IRoleValidator<IdentityRole>, RoleValidator<IdentityRole>>();

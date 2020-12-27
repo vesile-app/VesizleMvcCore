@@ -7,8 +7,8 @@ namespace VesizleMvcCore.Constants
 {
     public static class Messages
     {
-        public static string Required = "Bu alan zorunludur.";
-        public static string Email = "Doğru bir e-mail adresi giriniz.";
+        public static string EmailSent = "Password reset link has been sent to your e-mail. Check your email.";
+        public static string EmailNotFound = "A user with this email was not found.";
 
         //App
         public static string LoginFailed = "Email veya password hatalı.";

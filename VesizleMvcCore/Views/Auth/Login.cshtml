@@ -1,7 +1,7 @@
 ﻿@model LoginViewModel
 
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "Login";
 }
 
 <div class="limiter">
@@ -11,7 +11,7 @@
                 <img src="https://cdn.discordapp.com/attachments/767792433353195581/788838300370075678/aybo-01.png" alt="IMG">
             </div>
 
-            <form  asp-action="Login" class="login100-form validate-form">
+            <form asp-action="Login" class="login100-form validate-form">
                 <span class="login100-form-title">
                     Member Login
                 </span>
@@ -33,27 +33,30 @@
                         <i class="fa fa-lock" aria-hidden="true"></i>
                     </span>
                 </div>
-                <small>
+                <small class="mb-0">
                     <span asp-validation-for="Password" class="text-danger ml-4"></span>
                 </small>
+                <div class="form-check ml-2">
+                    <input class="form-check-input" type="checkbox" name="RememberMe" asp-for="RememberMe">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Remember me
+                    </label>
+                </div>
+
                 <div class="container-login100-form-btn">
                     <button class="login100-form-btn">
                         Login
                     </button>
                 </div>
-                
-                <div class="text-center p-t-12">
-                    <span class="txt1">
-                        Forgot
-                    </span>
-                    <a class="txt2" href="#">
-                        Username / Password?
-                    </a>
-                </div>
+
 
                 <div class="text-center ">
                     <a class="txt2" href="@Url.Action("Register", "Auth")">
                         Create your Account
+                        <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+                    </a>
+                    <a class="txt2" href="@Url.Action("ForgotPassword", "Auth")">
+                        Forgot Password
                         <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
                     </a>
                 </div>

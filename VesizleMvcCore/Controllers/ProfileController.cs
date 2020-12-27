@@ -67,8 +67,6 @@ namespace VesizleMvcCore.Controllers
         [HttpGet]
         public async Task<IActionResult> Favorites()
         {
-
-
             var favorites = await _userManager.GetFavoritesAsync(HttpContext.User);
             FavoriteListViewModel favoriteListViewModels=new FavoriteListViewModel();
 

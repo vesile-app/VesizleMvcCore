@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net.Mail;
 using System.Threading.Tasks;
+using System.Web;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using VesizleMvcCore.Constants;
 using VesizleMvcCore.Extensions;
+using VesizleMvcCore.Helpers;
 using VesizleMvcCore.Identity;
 using VesizleMvcCore.Models;
 using VesizleMvcCore.NodejsApi.Api.Abstract;
@@ -46,7 +50,7 @@ namespace VesizleMvcCore.Controllers
                 if (user != null)
                 {
                     await _signInManager.SignOutAsync();
-                    var result = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
+                    var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
                     if (result.Succeeded)
                     {
                         return RedirectToAction("Index", "Home");
@@ -98,10 +102,67 @@ namespace VesizleMvcCore.Controllers
                     ModelState.AddIdentityError(validateResult.Errors);
                     return View(model);
                 }
-                ModelState.AddIdentityError(nameof(model.Password),identityResult.Errors);
+                ModelState.AddIdentityError(nameof(model.Password), identityResult.Errors);
                 return View(model);
             }
 
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                VesizleUser user = await _userManager.FindByEmailAsync(model.Email);
+                if (user != null)
+                {
+                    string resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+                    EmailHelper emailHelper = new EmailHelper();
+                    var result=emailHelper.SendEmailResetPassword(model.Email, user.Id, resetToken);
+                    if (result.IsSuccessful)
+                    {
+                        ViewBag.EmailSent = Messages.EmailSent;
+                        return View(model);
+                    }
+                    ModelState.AddModelError(nameof(model.Email), Messages.ThereWasAnError);
+                    return View(model);
+                }
+                ModelState.AddModelError(nameof(model.Email),Messages.EmailNotFound);
+                return View(model);
+            }
+            return View(model);
+        }
+        [HttpGet]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+        [HttpGet("[action]/{userId}/{token}")]
+        public IActionResult UpdatePassword(string userId, string token)
+        {
+            return View();
+        }
+        [HttpPost("[action]/{userId}/{token}")]
+        public async Task<IActionResult> UpdatePassword(UpdatePasswordViewModel model, string userId, string token)
+        {
+            if (ModelState.IsValid)
+            {
+                VesizleUser user = await _userManager.FindByIdAsync(userId);
+                IdentityResult result = await _userManager.ResetPasswordAsync(user, HttpUtility.UrlDecode(token), model.Password);
+                if (result.Succeeded)
+                {
+                    ViewBag.State = true;
+                    var result2 = await _userManager.UpdateSecurityStampAsync(user);
+                    if (result2.Succeeded)
+                    {
+                        return RedirectToAction("Login");
+                    }
+                    ModelState.AddIdentityError(result2.Errors);
+                    return View(model);
+                }
+                ModelState.AddIdentityError(result.Errors);
+                return View(model);
+            }
             return View(model);
         }
     }
