@@ -86,13 +86,13 @@ namespace VesizleMvcCore.Controllers
                     {
                         user.PasswordHash = _passwordHasher.HashPassword(user, model.Password);
                         var createResult = await _userManager.CreateAsync(user);
-                        var roleAddResult = await _userManager.AddToRoleAsync(user, UserRoles.Standard);
-                        if (createResult.Succeeded && roleAddResult.Succeeded)
+                        //var roleAddResult = await _userManager.AddToRoleAsync(user, UserRoles.Standard);
+                        if (createResult.Succeeded /*&& roleAddResult.Succeeded*/)
                         {
                             return RedirectToAction("Index", "Home");
                         }
                         ModelState.AddIdentityError(createResult.Errors);
-                        ModelState.AddIdentityError(roleAddResult.Errors);
+                        //ModelState.AddIdentityError(roleAddResult.Errors);
                         return View(model);
                     }
                     ModelState.AddIdentityError(validateResult.Errors);

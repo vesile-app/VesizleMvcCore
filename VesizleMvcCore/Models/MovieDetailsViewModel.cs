@@ -11,5 +11,7 @@ namespace VesizleMvcCore.Models
         public string Title { get; set; }
         public string PosterUrl{ get; set; }
         public string Overview { get; set; }
+        public string YoutubeUrl { get; set; }
+
     }
 }

@@ -23,7 +23,7 @@ namespace VesizleMvcCore.AutoMapperConfig
 
             CreateMap<ApiMovieDetailsResult, FavoriteDetailViewModel>().ForMember(model => model.VoteAverage, expression => expression.MapFrom(result => result.Vote_Average)).ForMember(model => model.MovieId, expression => expression.MapFrom(result => result.Id)).ForMember(model => model.PosterUrl, expression => expression.MapFrom(result => AppConstants.BasePosterUrl + result.Poster_Path));
 
-            CreateMap<ApiMovieDetailsResult,MovieDetailsViewModel>().ForMember(model => model.MovieId, expression => expression.MapFrom(result => result.Id)).ForMember(model => model.PosterUrl, expression => expression.MapFrom(result => AppConstants.BasePosterUrl + result.Poster_Path));
+            CreateMap<ApiMovieDetailsResult,MovieDetailsViewModel>().ForMember(model => model.MovieId, expression => expression.MapFrom(result => result.Id)).ForMember(model => model.PosterUrl, expression => expression.MapFrom(result => AppConstants.BasePosterUrl + result.Poster_Path)).ForMember(model => model.YoutubeUrl, expression => expression.MapFrom(result => AppConstants.BaseYoutubeUrl + result.Videos.Results[0].Key)); 
         }
     }
 }

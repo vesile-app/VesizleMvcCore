@@ -90,7 +90,6 @@ namespace VesizleMvcCore.Extensions
             {
                 user.Reminders.Add(reminder);
                 result = await userManager.UpdateAsync(user);
-
             }
             else
             {
