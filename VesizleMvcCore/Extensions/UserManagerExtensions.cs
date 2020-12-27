@@ -21,15 +21,16 @@ namespace VesizleMvcCore.Extensions
             var userId = userClaims.FindFirst(ClaimTypes.NameIdentifier).Value;
             var user = await userManager.Users.Include(vesizleUser => vesizleUser.Favorites)
                 .FirstOrDefaultAsync(vesizleUser => vesizleUser.Id == userId);
+            var userFav = user.Favorites.FirstOrDefault(fav => fav.MovieId == favorite.MovieId);
 
-            if (user.Favorites.FirstOrDefault(fav => fav.MovieId == favorite.MovieId) == null)
+            if (userFav == null)
             {
                 user.Favorites.Add(favorite);
                 result = new SuccessDataResult<IdentityResult>(Messages.AddFavoriteSuccess, await userManager.UpdateAsync(user));
             }
             else
             {
-                user.Favorites.Remove(favorite);
+                user.Favorites.Remove(userFav);
                 result = new SuccessDataResult<IdentityResult>(Messages.AddFavoriteSuccess, await userManager.UpdateAsync(user));
             }
 
@@ -41,8 +42,8 @@ namespace VesizleMvcCore.Extensions
             var userId = userClaims.FindFirst(ClaimTypes.NameIdentifier).Value;
             var user = await userManager.Users.Include(vesizleUser => vesizleUser.WatchLists)
                 .FirstOrDefaultAsync(vesizleUser => vesizleUser.Id == userId);
-
-            if (user.WatchLists.FirstOrDefault(watch => watch.MovieId == watchList.MovieId) == null)
+            var userWatch = user.WatchLists.FirstOrDefault(watch => watch.MovieId == watchList.MovieId);
+            if (userWatch==null)
             {
                 user.WatchLists.Add(watchList);
                 result = new SuccessDataResult<IdentityResult>(Messages.AddWatchListSuccess, await userManager.UpdateAsync(user));
@@ -50,7 +51,7 @@ namespace VesizleMvcCore.Extensions
             }
             else
             {
-                user.WatchLists.Remove(watchList);
+                user.WatchLists.Remove(userWatch);
                 result = new SuccessDataResult<IdentityResult>(Messages.RemoveWatchListSuccess, await userManager.UpdateAsync(user));
             }
 
@@ -63,7 +64,8 @@ namespace VesizleMvcCore.Extensions
             var user = await userManager.Users.Include(vesizleUser => vesizleUser.WatchedLists)
                 .FirstOrDefaultAsync(vesizleUser => vesizleUser.Id == userId);
 
-            if (user.WatchedLists.FirstOrDefault(watched => watched.MovieId == watchedList.MovieId) == null)
+            var userWatched = user.WatchedLists.FirstOrDefault(watch => watch.MovieId == watchedList.MovieId);
+            if (userWatched == null)
             {
                 user.WatchedLists.Add(watchedList);
                 result = new SuccessDataResult<IdentityResult>(Messages.AddWatchedListSuccess, await userManager.UpdateAsync(user));
@@ -71,7 +73,7 @@ namespace VesizleMvcCore.Extensions
             }
             else
             {
-                user.WatchedLists.Remove(watchedList);
+                user.WatchedLists.Remove(userWatched);
                 result = new SuccessDataResult<IdentityResult>(Messages.RemoveWatchedListSuccess, await userManager.UpdateAsync(user));
             }
 
@@ -83,8 +85,8 @@ namespace VesizleMvcCore.Extensions
             var userId = userClaims.FindFirst(ClaimTypes.NameIdentifier).Value;
             var user = await userManager.Users.Include(vesizleUser => vesizleUser.Reminders)
                 .FirstOrDefaultAsync(vesizleUser => vesizleUser.Id == userId);
-
-            if (user.Reminders.FirstOrDefault(rem => rem.MovieId == reminder.MovieId) == null)
+            var userReminder = user.Reminders.FirstOrDefault(rem => rem.MovieId == reminder.MovieId);
+            if (userReminder == null)
             {
                 user.Reminders.Add(reminder);
                 result = await userManager.UpdateAsync(user);
@@ -92,7 +94,7 @@ namespace VesizleMvcCore.Extensions
             }
             else
             {
-                user.Reminders.Remove(reminder);
+                user.Reminders.Remove(userReminder);
                 result = await userManager.UpdateAsync(user);
             }
 
