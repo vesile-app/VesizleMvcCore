@@ -31,7 +31,7 @@ namespace VesizleMvcCore.Extensions
             else
             {
                 user.Favorites.Remove(userFav);
-                result = new SuccessDataResult<IdentityResult>(Messages.AddFavoriteSuccess, await userManager.UpdateAsync(user));
+                result = new SuccessDataResult<IdentityResult>(Messages.RemoveFavoriteSuccess, await userManager.UpdateAsync(user));
             }
 
             return result;
