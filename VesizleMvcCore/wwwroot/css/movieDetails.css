@@ -82,4 +82,84 @@
     box-shadow: inset 0px 0px 8px #696969;
 }
 
+.visually-hidden {
+    position: absolute;
+    left: -100vw;
+}
 
+.form-check-label {
+    display: flex;
+    position: absolute;
+    text-shadow: 0px 0.5px 0.5px darkgray;
+}
+
+.watchIcon:hover::after {
+    font-size: 20px;
+    padding-top: 15px;
+    padding-left: 10px;
+    content: 'Add to Watch List';
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typingIn 1.5s;
+}
+.watchedIcon:hover::after {
+    font-size: 20px;
+    padding-top: 15px;
+    padding-left: 10px;
+    content: 'Add to Watched';
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typingIn 1.5s;
+}
+.favIcon:hover::after {
+    font-size: 20px;
+    padding-top: 15px;
+    padding-left: 10px;
+    content: 'Add to Favorites';
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typingIn 1.5s;
+}
+
+input[type=checkbox]:checked + label {
+    color: red;
+}
+
+input[type=checkbox]:checked + .watchIcon:hover::after {
+    font-size: 20px;
+    padding-top: 15px;
+    padding-left: 10px;
+    content: 'Remove from Watch List';
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typingIn 1.5s;
+}
+
+input[type=checkbox]:checked + .watchedIcon:hover::after {
+    font-size: 20px;
+    padding-top: 15px;
+    padding-left: 10px;
+    content: 'Remove from Watched';
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typingIn 1.5s;
+}
+input[type=checkbox]:checked + .favIcon:hover::after {
+    font-size: 20px;
+    padding-top: 15px;
+    padding-left: 10px;
+    content: 'Remove From Favorites';
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typingIn 1.5s;
+}
+
+@keyframes typingIn {
+    from {
+        width: 0
+    }
+
+    to {
+        width: 100%;
+    }
+}

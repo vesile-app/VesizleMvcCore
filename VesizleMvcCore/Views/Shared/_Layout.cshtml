@@ -27,14 +27,13 @@
 
         @if (User.Identity.IsAuthenticated)
         {
-            <input type="button" value="Logout" id="loginBtn" class="btn btn-outline-warning btn-light navbar-right my-2 my-sm-0" onclick="location.href='@Url.Action("Logout", "Auth")'" />
-
-            <input type="button" value="Profile" id="loginBtn" class="btn btn-outline-warning btn-light navbar-right my-2 my-sm-0" onclick="location.href='@Url.Action("Index", "Profile")'" />
-            <input type="button" value="Favorites" id="loginBtn" class="btn btn-outline-warning btn-light navbar-right my-2 my-sm-0" onclick="location.href='@Url.Action("Favorites", "Profile")'" />
+            <button id="loginBtn" class="btn btn-outline-warning btn-light navbar-right my-2 my-sm-0" onclick="location.href='@Url.Action("Favorites", "Profile")'">Favorites <i class="fas fa-film"></i></button>
+            <button id="loginBtn" class="btn btn-outline-warning btn-light navbar-right my-2 my-sm-0" onclick="location.href='@Url.Action("Index", "Profile")'">Profile <i class="far fa-id-card"></i></button>
+            <button id="loginBtn" class="btn btn-outline-warning btn-light navbar-right my-2 my-sm-0" onclick="location.href='@Url.Action("Logout", "Auth")'">Logout <i class="fas fa-sign-out-alt"></i></button>
         }
         else
         {
-            <input type="button" value="Login" id="loginBtn" class="btn btn-outline-warning btn-light navbar-right my-2 my-sm-0" onclick="location.href='@Url.Action("Login", "Auth")'" />
+            <button id="loginBtn" class="btn btn-outline-warning btn-light navbar-right my-2 my-sm-0" onclick="location.href='@Url.Action("Login", "Auth")'">Login <i class="fas fa-sign-in-alt"></i></button>
         }
 
 

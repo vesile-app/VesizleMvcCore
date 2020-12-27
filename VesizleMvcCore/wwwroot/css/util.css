@@ -1,6 +1,10 @@
 ﻿/*[ FONT SIZE ]
 ///////////////////////////////////////////////////////////
 */
+
+.m-l-320 {
+    margin-left: 320px;
+}
 .fs-1 {
     font-size: 1px;
 }
@@ -1806,6 +1810,9 @@
 
 .p-t-250 {
     padding-top: 250px;
+}
+.p-t-300 {
+    padding-top: 300px;
 }
 
 .p-b-0 {
@@ -3814,6 +3821,10 @@
 
 .p-l-250 {
     padding-left: 250px;
+}
+
+.p-l-300 {
+    padding-left: 300px;
 }
 
 .p-r-0 {

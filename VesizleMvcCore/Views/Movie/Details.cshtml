@@ -3,32 +3,7 @@
 @{
     ViewBag.Title = "title";
 }
-@if (User.Identity.IsAuthenticated)
-{
-    <div class="row">
-        <div class="col d-flex ">
-            <div class="form-check mr-3">
-                <input movie-id="@Model.MovieId" class="form-check-input" type="checkbox" id="watch">
-                <label class="form-check-label" for="flexCheckDefault">
-                    Add to watch list
-                </label>
-            </div>
 
-            <div class="form-check mr-3">
-                <input movie-id="@Model.MovieId" class="form-check-input" type="checkbox" value="" id="watched">
-                <label class="form-check-label" for="flexCheckDefault">
-                    I watched
-                </label>
-            </div>
-            <div class="form-check">
-                <input movie-id="@Model.MovieId" class="form-check-input" type="checkbox" value="" id="favorite">
-                <label class="form-check-label" for="flexCheckDefault">
-                    Add to favorites
-                </label>
-            </div>
-        </div>
-    </div>
-}
 
 
 <div class="ticket m-t-70">
@@ -41,6 +16,28 @@
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 </div>
+
+@if (User.Identity.IsAuthenticated)
+{
+
+    <div class="row p-t-25 p-b-25 p-l-150">
+        <div class="form-check">
+            <input movie-id="@Model.MovieId" class="form-check-input visually-hidden" type="checkbox" id="watch" value="" class="form-check-input visually-hidden">
+            <label class="form-check-label watchIcon" for="watch"><i class="fa fa-eye fa-4x"></i></label>
+        </div>
+
+        <div class="form-check m-l-320">
+            <input movie-id="@Model.MovieId" class="form-check-input visually-hidden" type="checkbox" id="watched" value="" class="form-check-input visually-hidden">
+            <label class="form-check-label watchedIcon" for="watched"><i class="fa fa-ticket-alt fa-4x"></i></label>
+        </div>
+
+        <div class="form-check m-l-320">
+            <input movie-id="@Model.MovieId" class="form-check-input visually-hidden" type="checkbox" id="favorite" value="" class="form-check-input visually-hidden">
+            <label class="form-check-label favIcon" for="favorite"><i class="fa fa-heart fa-4x"></i></label>
+        </div>
+    </div>
+    
+}
 
 <div class="movieInfoBg m-t-80">
     <div class="container p-b-40 p-t-40 movieInfo ">
@@ -60,7 +57,7 @@
                     if (data) {
                         $('#favorite').attr("checked", "checked");
                     }
-                }).fail(function() {
+                }).fail(function () {
                     //todo:toastify
                     Toastify({
                         text: data.message,
@@ -69,33 +66,33 @@
                     }).showToast();
                 });
 
-                $('#favorite').click(function() {
+                $('#favorite').click(function () {
                     var checkBox = $(this);
                     $.post("/Profile/AddFavorite",
                         {
                             "movieId": movieId
-                        }).done(function(data) {
-                        if (data.isSuccessful) {
+                        }).done(function (data) {
+                            if (data.isSuccessful) {
+                                Toastify({
+                                    text: data.message,
+                                    backgroundColor: "yellow",
+                                    className: "bg-warning"
+                                }).showToast();
+                            } else {
+                                Toastify({
+                                    text: data.errors.map(e => e.description).join(" ,"),
+                                    backgroundColor: "red",
+                                    className: "bg-danger"
+                                }).showToast();
+                            }
+                        }).fail(function () {
+                            //todo:toastify
                             Toastify({
                                 text: data.message,
-                                backgroundColor: "yellow",
-                                className: "bg-warning"
-                            }).showToast();
-                        } else {
-                            Toastify({
-                                text: data.errors.map(e => e.description).join(" ,"),
                                 backgroundColor: "red",
                                 className: "bg-danger"
                             }).showToast();
-                        }
-                    }).fail(function() {
-                        //todo:toastify
-                        Toastify({
-                            text: data.message,
-                            backgroundColor: "red",
-                            className: "bg-danger"
-                        }).showToast();
-                    });
+                        });
 
                 });
             }

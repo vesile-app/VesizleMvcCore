@@ -23,7 +23,7 @@
     background: none;
     line-height: 40px;
     margin-left: 5px;
-    width: 100%;
+    width: 500px;
 }
 
 .searchbar:focus-within {
