@@ -25,5 +25,22 @@ namespace VesizleMvcCore.Constants
         //Auth
         public static string AccessDenied = "Access denied.";
         public static string Unauthorized = "Unauthorized.";
+
+        //Toast
+        public static string AlreadyInFavorite = "This movie is already in your favorites.";
+        public static string AlreadyInReminders = "This movie is already in your Reminders.";
+        public static string AlreadyInWatchedList = "This movie is already in your WatchedList.";
+        public static string AlreadyInWatchList = "This movie is already in your WatchList.";
+
+        public static string AddFavoriteSuccess = "Successfully added to favorites.";
+        public static string RemoveFavoriteSuccess = "Successfully removed from favorites.";
+
+        public static string AddWatchListSuccess = "Successfully added to watch list.";
+        public static string RemoveWatchListSuccess = "Successfully removed from watch list.";
+
+        public static string AddWatchedListSuccess = "Successfully added to watched list.";
+        public static string RemoveWatchedListSuccess = "Successfully removed from watched list.";
+
+        public static string ThereWasAnError = "There was an error.";
     }
 }

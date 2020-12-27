@@ -7,6 +7,13 @@ namespace VesizleMvcCore.Identity
 {
     public class VesizleUser : IdentityUser
     {
+        public VesizleUser()
+        {
+            Favorites = new List<Favorite>();
+            WatchLists = new List<WatchList>();
+            WatchedLists = new List<WatchedList>();
+            Reminders = new List<Reminder>();
+        }
         [Required]
         public string FirstName { get; set; }
         [Required]

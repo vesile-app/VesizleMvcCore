@@ -3,6 +3,33 @@
 @{
     ViewBag.Title = "title";
 }
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="row">
+        <div class="col d-flex ">
+            <div class="form-check mr-3">
+                <input movie-id="@Model.MovieId" class="form-check-input" type="checkbox" id="watch">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Add to watch list
+                </label>
+            </div>
+
+            <div class="form-check mr-3">
+                <input movie-id="@Model.MovieId" class="form-check-input" type="checkbox" value="" id="watched">
+                <label class="form-check-label" for="flexCheckDefault">
+                    I watched
+                </label>
+            </div>
+            <div class="form-check">
+                <input movie-id="@Model.MovieId" class="form-check-input" type="checkbox" value="" id="favorite">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Add to favorites
+                </label>
+            </div>
+        </div>
+    </div>
+}
+
 
 <div class="ticket m-t-70">
     <div class="ticket1">
@@ -22,3 +49,152 @@
     </div>
 </div>
 
+@section AjaxReq{
+    @if (User.Identity.IsAuthenticated)
+    {
+        <script>
+            function favorite() {
+
+                var movieId = $('#favorite').attr("movie-id");
+                $.get("/Profile/IsFavorite/", { "movieId": movieId }).done(function (data) {
+                    if (data) {
+                        $('#favorite').attr("checked", "checked");
+                    }
+                }).fail(function() {
+                    //todo:toastify
+                    Toastify({
+                        text: data.message,
+                        backgroundColor: "red",
+                        className: "bg-danger"
+                    }).showToast();
+                });
+
+                $('#favorite').click(function() {
+                    var checkBox = $(this);
+                    $.post("/Profile/AddFavorite",
+                        {
+                            "movieId": movieId
+                        }).done(function(data) {
+                        if (data.isSuccessful) {
+                            Toastify({
+                                text: data.message,
+                                backgroundColor: "yellow",
+                                className: "bg-warning"
+                            }).showToast();
+                        } else {
+                            Toastify({
+                                text: data.errors.map(e => e.description).join(" ,"),
+                                backgroundColor: "red",
+                                className: "bg-danger"
+                            }).showToast();
+                        }
+                    }).fail(function() {
+                        //todo:toastify
+                        Toastify({
+                            text: data.message,
+                            backgroundColor: "red",
+                            className: "bg-danger"
+                        }).showToast();
+                    });
+
+                });
+            }
+            function watchList() {
+
+                var movieId = $('#watch').attr("movie-id");
+                $.get("/Profile/IsWatchList/", { "movieId": movieId }).done(function (data) {
+                    if (data) {
+                        $('#watch').attr("checked", "checked");
+                    }
+                }).fail(function () {
+                    //todo:toastify
+                    Toastify({
+                        text: data.message,
+                        backgroundColor: "red",
+                        className: "bg-danger"
+                    }).showToast();
+                });
+
+                $('#watch').click(function () {
+                    var checkBox = $(this);
+                    $.post("/Profile/AddWatchList",
+                        {
+                            "movieId": movieId
+                        }).done(function (data) {
+                            if (data.isSuccessful) {
+                                Toastify({
+                                    text: data.message,
+                                    backgroundColor: "yellow",
+                                    className: "bg-warning"
+                                }).showToast();
+                            } else {
+                                Toastify({
+                                    text: data.errors.map(e => e.description).join(" ,"),
+                                    backgroundColor: "red",
+                                    className: "bg-danger"
+                                }).showToast();
+                            }
+                        }).fail(function () {
+                            //todo:toastify
+                            Toastify({
+                                text: data.message,
+                                backgroundColor: "red",
+                                className: "bg-danger"
+                            }).showToast();
+                        });
+
+                });
+            }
+            function watchedList() {
+
+                var movieId = $('#watched').attr("movie-id");
+                $.get("/Profile/IsWatchedList/", { "movieId": movieId }).done(function (data) {
+                    if (data) {
+                        $('#watched').attr("checked", "checked");
+                    }
+                }).fail(function () {
+                    //todo:toastify
+                    Toastify({
+                        text: data.message,
+                        backgroundColor: "red",
+                        className: "bg-danger"
+                    }).showToast();
+                });
+
+                $('#watched').click(function () {
+                    var checkBox = $(this);
+                    $.post("/Profile/AddWatchedList",
+                        {
+                            "movieId": movieId
+                        }).done(function (data) {
+                            if (data.isSuccessful) {
+                                Toastify({
+                                    text: data.message,
+                                    backgroundColor: "yellow",
+                                    className: "bg-warning"
+                                }).showToast();
+                            } else {
+                                Toastify({
+                                    text: data.errors.map(e => e.description).join(" ,"),
+                                    backgroundColor: "red",
+                                    className: "bg-danger"
+                                }).showToast();
+                            }
+                        }).fail(function () {
+                            //todo:toastify
+                            Toastify({
+                                text: data.message,
+                                backgroundColor: "red",
+                                className: "bg-danger"
+                            }).showToast();
+                        });
+
+                });
+            }
+            favorite();
+            watchedList();
+            watchList();
+        </script>
+    }
+
+}
