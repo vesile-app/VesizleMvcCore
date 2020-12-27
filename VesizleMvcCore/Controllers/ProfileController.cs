@@ -67,14 +67,20 @@ namespace VesizleMvcCore.Controllers
         [HttpGet]
         public async Task<IActionResult> Favorites()
         {
+
+
             var favorites = await _userManager.GetFavoritesAsync(HttpContext.User);
             FavoriteListViewModel favoriteListViewModels=new FavoriteListViewModel();
-            foreach (var favorite in favorites)
+
+            if (favorites != null)
             {
-                var result = await _movieService.GetDetailsAsync(favorite.MovieId);
-                if (result.IsSuccessful)
+                foreach (var favorite in favorites)
                 {
-                    favoriteListViewModels.FavoriteDetailViewModels.Add(_mapper.Map<FavoriteDetailViewModel>(result.Data));
+                    var result = await _movieService.GetDetailsAsync(favorite.MovieId);
+                    if (result.IsSuccessful)
+                    {
+                        favoriteListViewModels.FavoriteDetailViewModels.Add(_mapper.Map<FavoriteDetailViewModel>(result.Data));
+                    }
                 }
             }
             return View(favoriteListViewModels);
