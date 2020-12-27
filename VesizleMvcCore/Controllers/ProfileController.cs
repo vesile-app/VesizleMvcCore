@@ -64,7 +64,6 @@ namespace VesizleMvcCore.Controllers
         //    var currentUser = _mapper.Map<UserDetailViewModel>(user);
         //    return View(currentUser);
         //}
-
         [HttpGet]
         public async Task<IActionResult> Favorites()
         {
@@ -130,7 +129,6 @@ namespace VesizleMvcCore.Controllers
         {
             return View();
         }
-
 
         [HttpPost]
         public async Task<IDataResult<object>> AddFavorite([Required] int movieId)
