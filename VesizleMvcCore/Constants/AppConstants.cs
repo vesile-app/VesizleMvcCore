@@ -12,9 +12,11 @@ namespace VesizleMvcCore.Constants
 
         public static string BasePosterUrl = "https://image.tmdb.org/t/p/w500";
         public static string BaseYoutubeUrl = "https://www.youtube.com/embed/";
+        public static string BaseProfilePath = "https://image.tmdb.org/t/p/w500/";
 
         public static string VesizleEmail = "vesizle@gmail.com";
         public static string VesizlePassword = "vesizle123";
 
+      
     }
 }

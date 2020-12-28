@@ -5,11 +5,8 @@ using System.Threading.Tasks;
 
 namespace VesizleMvcCore.Models
 {
-    public class DiscoverCardModel
+    public class DiscoverCardModel : BaseCardModel
     {
-        public int MovieId { get; set; }
-        public decimal VoteAverage { get; set; }
-        public string Title { get; set; }
-        public string PosterUrl { get; set; }
+
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using VesizleMvcCore.NodejsApi.Entities;
 
 namespace VesizleMvcCore.Models
 {
@@ -13,5 +14,8 @@ namespace VesizleMvcCore.Models
         public string Overview { get; set; }
         public string YoutubeUrl { get; set; }
 
+        public CreditsViewModel CreditsViewModel { get; set; }
+
+        public RecommendationsModel Recommendations { get; set; }
     }
 }

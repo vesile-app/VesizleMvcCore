@@ -7,11 +7,8 @@ using VesizleMvcCore.NodejsApi.Entities;
 
 namespace VesizleMvcCore.NodejsApi.ApiResults
 {
-    public class ApiDiscoverResult
+    public class ApiDiscoverResult:BaseListResult<DiscoveryMovie>
     {
-        public int Page { get; set; }
-        public List<DiscoveryMovie> Results { get; set; }
-        public int Total_Pages { get; set; }
-        public int Total_Results { get; set; }
+
     }
 }

@@ -23,11 +23,13 @@ namespace VesizleMvcCore.NodejsApi.ApiResults
         public string Poster_Path { get; set; }
         public List<ProductionCountry> Production_Countries { get; set; }
         public List<ProductionCompany> Production_Companies { get; set; }
+        public Recommendations Recommendations { get; set; }
         public string Release_Date { get; set; }
         public int Revenue { get; set; }
         public int Runtime { get; set; }
         public Videos Videos { get; set; }
         public List<SpokenLanguage> Spoken_Languages { get; set; }
+        public Credits Credits { get; set; }
         public string Status { get; set; }
         public string Tagline { get; set; }
         public string Title { get; set; }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace VesizleMvcCore.Models
 {
-    public class PopularCardModel : BaseCardModel
+    public class RecommendationCardModel : BaseCardModel
     {
 
     }

@@ -24,7 +24,6 @@ namespace VesizleMvcCore.Controllers
             var result = await _searchService.SearchAsync(query);
 
             var searchDetail = _mapper.Map<SearchViewModel>(result);
-            searchDetail.Results = _mapper.Map<List<SearchDetailViewModel>>(result.Results);
             return View(searchDetail);
         }
     }

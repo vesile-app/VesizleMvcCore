@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace VesizleMvcCore.Models
 {
-    public class PopularCardModel : BaseCardModel
+    public class CastViewModel : BaseCreditViewModel
     {
-
+        public string Character { get; set; }
+        public int Order { get; set; }
     }
 }

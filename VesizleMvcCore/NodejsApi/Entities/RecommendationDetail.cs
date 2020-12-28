@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace VesizleMvcCore.Models
+namespace VesizleMvcCore.NodejsApi.Entities
 {
-    public class PopularCardModel : BaseCardModel
+    public class RecommendationDetail : BaseListMovie
     {
 
     }
