@@ -14,7 +14,7 @@ namespace VesizleMvcCore.Constants
         public static string BaseYoutubeUrl = "https://www.youtube.com/embed/";
 
         public static string VesizleEmail = "vesizle@gmail.com";
-        public static string VesizlePassword = "Vesizle123";
+        public static string VesizlePassword = "vesizle123";
 
     }
 }

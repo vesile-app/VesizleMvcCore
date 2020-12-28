@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net.Mail;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
 using VesizleMvcCore.Constants;
 using VesizleMvcCore.Extensions;
 using VesizleMvcCore.Helpers;
@@ -124,7 +126,7 @@ namespace VesizleMvcCore.Controllers
                         ViewBag.EmailSent = Messages.EmailSent;
                         return View(model);
                     }
-                    ModelState.AddModelError(nameof(model.Email), Messages.ThereWasAnError);
+                    ModelState.AddModelError(nameof(model.Email), result.Message);
                     return View(model);
                 }
                 ModelState.AddModelError(nameof(model.Email),Messages.EmailNotFound);
@@ -148,10 +150,11 @@ namespace VesizleMvcCore.Controllers
             if (ModelState.IsValid)
             {
                 VesizleUser user = await _userManager.FindByIdAsync(userId);
-                IdentityResult result = await _userManager.ResetPasswordAsync(user, HttpUtility.UrlDecode(token), model.Password);
+                var codeDecodedBytes = WebEncoders.Base64UrlDecode(token);
+                var codeDecoded = Encoding.UTF8.GetString(codeDecodedBytes);
+                IdentityResult result = await _userManager.ResetPasswordAsync(user, codeDecoded, model.Password);
                 if (result.Succeeded)
                 {
-                    ViewBag.State = true;
                     var result2 = await _userManager.UpdateSecurityStampAsync(user);
                     if (result2.Succeeded)
                     {
@@ -160,7 +163,7 @@ namespace VesizleMvcCore.Controllers
                     ModelState.AddIdentityError(result2.Errors);
                     return View(model);
                 }
-                ModelState.AddIdentityError(result.Errors);
+                ModelState.AddIdentityError(nameof(model.RePassword),result.Errors);
                 return View(model);
             }
             return View(model);

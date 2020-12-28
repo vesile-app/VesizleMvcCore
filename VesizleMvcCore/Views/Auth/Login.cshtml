@@ -36,7 +36,7 @@
                 <small class="mb-0">
                     <span asp-validation-for="Password" class="text-danger ml-4"></span>
                 </small>
-                <div class="form-check ml-2">
+                <div class="form-check ml-2 mb-3">
                     <input class="form-check-input" type="checkbox" name="RememberMe" asp-for="RememberMe">
                     <label class="form-check-label" for="flexCheckDefault">
                         Remember me
@@ -51,13 +51,12 @@
 
 
                 <div class="text-center ">
-                    <a class="txt2" href="@Url.Action("Register", "Auth")">
+                    <a class="txt2 m" href="@Url.Action("Register", "Auth")">
                         Create your Account
-                        <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
                     </a>
+                    <b >·</b>
                     <a class="txt2" href="@Url.Action("ForgotPassword", "Auth")">
                         Forgot Password
-                        <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
                     </a>
                 </div>
             </form>
