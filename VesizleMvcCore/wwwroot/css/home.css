@@ -65,10 +65,10 @@
 .imdb {
     position: absolute;
     bottom: 2px;
-    left: 50px;
     min-height: 38px;
     z-index: 1;
-    
+    min-width: 143px;
+    max-width: 143px;
 }
 
 .poster:hover {
@@ -86,4 +86,5 @@
     height: 230px;
     width: 147px;
     border-radius: 15px;
+    background-image: url(https://i.imgur.com/r7u7PUN.png)
 }

@@ -48,8 +48,8 @@
 
 
 
-<div class="row m-t-110 filmBg">
-    <h2 class="m-b-8">Crew</h2>
+<div class="row m-t-50 filmBg">
+    <h2 class="m-b-10">Crew</h2>
     <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4">
         @foreach (var crew in Model.CreditsViewModel.CrewViewModels)
         {
@@ -60,13 +60,13 @@
                         <h6><a href="/Cast/Details/@crew.Id" title="@crew.Name">@crew.Name</a></h6>
                     </div>
                     <div class="image">
-                        <a class="image " href="/Cast/Details/@crew.Id" title="@crew.Name">
-                            <img class="poster" src="@(crew.ProfilePath)">
+                        <a class="image "  href="/Cast/Details/@crew.Id" title="@crew.Name">
+                            <img class="poster" alt="" src="@(crew.ProfilePath)">
                         </a>
                     </div>
-                    <div class="imdb">
-                        <h7>@crew.Job</h7>
-                        <h6>@crew.Department</h6>
+                    <div class="crew">
+                        <h6 class="crewDep">@crew.Department</h6>
+                        <h5 class="crewJob">@crew.Job</h5>
                     </div>
 
                 </div>
@@ -77,8 +77,8 @@
     </div>
 
 </div>
-<div class="row m-t-110 filmBg">
-    <h2 class="m-b-8">Cast</h2>
+<div class="row m-t-50 filmBg">
+    <h2 class="m-b-10">Cast</h2>
     <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4">
         @foreach (var cast in Model.CreditsViewModel.CastViewModels)
         {
@@ -105,8 +105,8 @@
     </div>
 
 </div>
-<div class="row m-t-110 filmBg">
-    <h2 class="m-b-8">Recommendations</h2>
+<div class="row m-t-50 filmBg">
+    <h2 class="m-b-10">Recommendations</h2>
     <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4">
         @foreach (var recommendation in Model.Recommendations.Results)
         {

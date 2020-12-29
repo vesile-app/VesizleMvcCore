@@ -91,6 +91,7 @@
     display: flex;
     position: absolute;
     text-shadow: 0px 0.5px 0.5px darkgray;
+    
 }
 
 .watchIcon:hover::after {
@@ -122,7 +123,26 @@
 }
 
 input[type=checkbox]:checked + label {
+    -webkit-transition: box-shadow 400ms ease-in-out, color 400ms ease-in-out;
+    transition: box-shadow 400ms ease-in-out, color 400ms ease-in-out;
     color: red;
+    transition: all 0.5s;
+}
+input[type=checkbox]:checked + label:hover {
+    transition: all 0.5s;
+}
+label {
+    transition: box-shadow 400ms ease-in-out, color 400ms ease-in-out;
+}
+
+.form-check-label:hover {
+    transform: scale(1.10);
+}
+.form-check-label:active {
+    transform: scale(1);
+}
+.form-check-label {
+    transition: all 0.5s;
 }
 
 input[type=checkbox]:checked + .watchIcon:hover::after {
@@ -162,4 +182,26 @@ input[type=checkbox]:checked + .favIcon:hover::after {
     to {
         width: 100%;
     }
+}
+img {
+    text-indent: -10000px
+}
+.crew {
+    position: absolute;
+    bottom: 1px;
+    left: 4px;
+    min-height: 38px;
+    min-width: 143px;
+    max-width: 143px;
+    z-index: 1;
+}
+.crewDep {
+    text-decoration: underline;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 1px;
+}
+.crewJob {
+    font-size: 14px;
+    text-align: center;
 }
