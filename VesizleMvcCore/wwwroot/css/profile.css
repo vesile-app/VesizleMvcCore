@@ -1,0 +1,49 @@
+﻿.clappingBoard {
+    padding-left: 170px;
+}
+
+.clappingBoardTop {
+    background-image: url(https://i.imgur.com/mncrGMm.png);
+    background-repeat: no-repeat;
+    position: absolute;
+    margin: 12px 0px 0px 12px;
+    height: 77px;
+    width: 800px;
+    z-index: -1;
+    animation-timing-function: ease;
+    animation: clappingAnim 1.6s alternate infinite;
+}
+
+.clappingBoardBottom {
+    background-image: url(https://i.imgur.com/jnElC3S.png);
+    background-repeat: no-repeat;
+    width: 953px;
+    height: 657px;
+}
+
+.clappingBoardBottomUpdate {
+    background-image: url(https://i.imgur.com/PICPlka.png);
+    background-repeat: no-repeat;
+    width: 953px;
+    height: 657px;
+}
+
+.userInfo {
+    color: #ffa500;
+    padding: 374px 0px 0px 345px;
+}
+.userInfoUpdate {
+    color: #ffa500;
+    padding: 310px 0px 0px 345px;
+    width: 680px;
+}
+.update {
+    height: 37px;
+}
+
+@keyframes clappingAnim {
+    90%, 100% {
+        transform-origin: 50px 41px;
+        transform: rotate(-10deg);
+    }
+}
