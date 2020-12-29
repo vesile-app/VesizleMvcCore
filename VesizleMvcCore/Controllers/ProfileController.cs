@@ -48,22 +48,44 @@ namespace VesizleMvcCore.Controllers
             var currentUser = _mapper.Map<UserDetailViewModel>(user);
             return View(currentUser);
         }
-        //[HttpGet]
-        //public async Task<IActionResult> WatchList()
-        //{
-        //    var user = await _userManager.GetUserAsync(HttpContext.User);
-        //    await _userManager.FavoriteAsync(HttpContext.User, new Favorite() { MovieId = 733317 });
-        //    var currentUser = _mapper.Map<UserDetailViewModel>(user);
-        //    return View(currentUser);
-        //}
-        //[HttpGet]
-        //public async Task<IActionResult> WatchedList()
-        //{
-        //    var user = await _userManager.GetUserAsync(HttpContext.User);
-        //    await _userManager.FavoriteAsync(HttpContext.User, new Favorite() { MovieId = 733317 });
-        //    var currentUser = _mapper.Map<UserDetailViewModel>(user);
-        //    return View(currentUser);
-        //}
+        [HttpGet]
+        public async Task<IActionResult> WatchList()
+        {
+            var watchList = await _userManager.GetWatchListAsync(HttpContext.User);
+            WatchListViewModel watchListViewModel = new WatchListViewModel();
+
+            if (watchList != null)
+            {
+                foreach (var watch in watchList)
+                {
+                    var result = await _movieService.GetDetailsAsync(watch.MovieId);
+                    if (result.IsSuccessful)
+                    {
+                        watchListViewModel.WatchListDetailViewModels.Add(_mapper.Map<WatchListDetailViewModel>(result.Data));
+                    }
+                }
+            }
+            return View(watchListViewModel);
+        }
+        [HttpGet]
+        public async Task<IActionResult> WatchedList()
+        {
+            var watchedList = await _userManager.GetWatchedListAsync(HttpContext.User);
+            WatchedListViewModel  watchedListViewModel= new WatchedListViewModel();
+
+            if (watchedList != null)
+            {
+                foreach (var watched in watchedList)
+                {
+                    var result = await _movieService.GetDetailsAsync(watched.MovieId);
+                    if (result.IsSuccessful)
+                    {
+                        watchedListViewModel.WatchedListDetailViewModels.Add(_mapper.Map<WatchedListDetailViewModel>(result.Data));
+                    }
+                }
+            }
+            return View(watchedListViewModel);
+        }
         [HttpGet]
         public async Task<IActionResult> Favorites()
         {
@@ -142,6 +164,7 @@ namespace VesizleMvcCore.Controllers
         [HttpPost]
         public async Task<object> AddWatchList([Required] int movieId)
         {
+            //todo:modelstate validasyon
             var result = await _userManager.WatchListAsync(HttpContext.User, new WatchList { MovieId = movieId });
             if (result.Data.Succeeded)
             {

@@ -32,7 +32,6 @@
     <Folder Include="Areas\Administration\Data\" />
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\" />
-    <Folder Include="wwwroot\img\" />
   </ItemGroup>
 
 

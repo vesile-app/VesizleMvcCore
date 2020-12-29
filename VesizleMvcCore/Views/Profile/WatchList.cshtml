@@ -1,0 +1,53 @@
+﻿@model WatchListViewModel
+@{
+    ViewData["Title"] = "WatchList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>WatchList</h1>
+<hr />
+
+<style>
+    .container {
+        padding: 2rem 0rem;
+    }
+
+    h4 {
+        margin: 2rem 0rem 1rem;
+    }
+
+    .table-image {
+        td, th
+
+    {
+        vertical-align: middle;
+    }
+    }
+</style>
+
+<div class="row">
+    <div class="col-12">
+        <table class="table table-image">
+            <thead>
+                <tr>
+                    <th scope="col">Movie Id</th>
+                    <th scope="col">Poster</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Vote Average</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var watchList in Model.WatchListDetailViewModels)
+                {
+                    <tr>
+                        <th scope="row">@watchList.MovieId</th>
+                        <td class="w-25">
+                            <img src="@watchList.PosterUrl" class="img-fluid img-thumbnail" alt="Sheep">
+                        </td>
+                        <td>@watchList.Title</td>
+                        <td>@watchList.VoteAverage</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

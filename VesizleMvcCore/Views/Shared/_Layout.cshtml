@@ -20,16 +20,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Jura:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <link href="~/node_modules//toastify-js/src/toastify.css" rel="stylesheet" />
+  
 </head>
 <body>
     <nav class="navbar">
         <a class="navbar-brand text-warning mx-auto" href="@Url.Action("Index", "Home")">Vesile</a>
-
+        
         @if (User.Identity.IsAuthenticated)
         {
             <button id="loginBtn" class="btn btn-outline-warning btn-light navbar-right my-2 my-sm-0" onclick="location.href='@Url.Action("Favorites", "Profile")'">Favorites <i class="fas fa-film"></i></button>
+            <button id="loginBtn" class="btn btn-outline-warning btn-light navbar-right my-2 my-sm-0" onclick="location.href='@Url.Action("WatchList", "Profile")'">Watch List <i class="fas fa-film"></i></button>
+            <button id="loginBtn" class="btn btn-outline-warning btn-light navbar-right my-2 my-sm-0" onclick="location.href='@Url.Action("WatchedList", "Profile")'">Watched List <i class="fas fa-film"></i></button>
             <button id="loginBtn" class="btn btn-outline-warning btn-light navbar-right my-2 my-sm-0" onclick="location.href='@Url.Action("Index", "Profile")'">Profile <i class="far fa-id-card"></i></button>
             <button id="loginBtn" class="btn btn-outline-warning btn-light navbar-right my-2 my-sm-0" onclick="location.href='@Url.Action("Logout", "Auth")'">Logout <i class="fas fa-sign-out-alt"></i></button>
+
         }
         else
         {
@@ -50,12 +54,11 @@
         </div>
     </footer>
     @*<script src="~/lib/combined.min.js"></script>*@
-    <script src="~/js/site.js"></script>
     <script src="~/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="~/node_modules/jquery/dist/jquery.min.js"></script>
 
     <script src="~/node_modules/toastify-js/src/toastify.js"></script>
-    @RenderSection("scripts", false);
-    @RenderSection("AjaxReq", false);
+    @RenderSection("scripts", false)
+    @RenderSection("AjaxReq", false)
 </body>
 </html>

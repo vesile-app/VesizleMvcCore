@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace VesizleMvcCore.Models
 {
-    public class FavoriteDetailViewModel: BaseProfileLists
+    public class WatchedListDetailViewModel : BaseProfileLists
     {
+      
     }
 }

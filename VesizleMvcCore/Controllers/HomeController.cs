@@ -49,7 +49,6 @@ namespace VesizleMvcCore.Controllers
         [HttpPost]
         public async Task<ActionResult> Index(string query)
         {
-
             return RedirectToAction("Index", "Search", new { query});
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
