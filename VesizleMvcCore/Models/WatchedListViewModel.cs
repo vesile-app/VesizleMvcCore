@@ -12,5 +12,6 @@ namespace VesizleMvcCore.Models
             WatchedListDetailViewModels = new List<WatchedListDetailViewModel>();
         }
         public List<WatchedListDetailViewModel> WatchedListDetailViewModels { get; set; }
+        public int Count { get; set; }
     }
 }

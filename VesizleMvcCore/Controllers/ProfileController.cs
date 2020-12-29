@@ -7,6 +7,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using ServiceReference1;
 using VesizleMvcCore.Constants;
 using VesizleMvcCore.Extensions;
 using VesizleMvcCore.Identity;
@@ -44,7 +45,7 @@ namespace VesizleMvcCore.Controllers
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-          await  _userManager.FavoriteAsync(HttpContext.User, new Favorite(){MovieId = 733317 });
+            await _userManager.FavoriteAsync(HttpContext.User, new Favorite() { MovieId = 733317 });
             var currentUser = _mapper.Map<UserDetailViewModel>(user);
             return View(currentUser);
         }
@@ -64,6 +65,12 @@ namespace VesizleMvcCore.Controllers
                         watchListViewModel.WatchListDetailViewModels.Add(_mapper.Map<WatchListDetailViewModel>(result.Data));
                     }
                 }
+                //WebServis Request
+                var userId = _userManager.GetUserId(HttpContext.User);
+                CountWebServiceSoapClient client = new CountWebServiceSoapClient(CountWebServiceSoapClient.EndpointConfiguration.CountWebServiceSoap);
+                var response = await client.WatchListCountAsync(userId);
+                watchListViewModel.Count = response.Body.WatchListCountResult;
+
             }
             return View(watchListViewModel);
         }
@@ -71,7 +78,7 @@ namespace VesizleMvcCore.Controllers
         public async Task<IActionResult> WatchedList()
         {
             var watchedList = await _userManager.GetWatchedListAsync(HttpContext.User);
-            WatchedListViewModel  watchedListViewModel= new WatchedListViewModel();
+            WatchedListViewModel watchedListViewModel = new WatchedListViewModel();
 
             if (watchedList != null)
             {
@@ -83,6 +90,11 @@ namespace VesizleMvcCore.Controllers
                         watchedListViewModel.WatchedListDetailViewModels.Add(_mapper.Map<WatchedListDetailViewModel>(result.Data));
                     }
                 }
+                //WebServis Request
+                var userId = _userManager.GetUserId(HttpContext.User);
+                CountWebServiceSoapClient client = new CountWebServiceSoapClient(CountWebServiceSoapClient.EndpointConfiguration.CountWebServiceSoap);
+                var response = await client.WatchedListCountAsync(userId);
+                watchedListViewModel.Count = response.Body.WatchedListCountResult;
             }
             return View(watchedListViewModel);
         }
@@ -90,7 +102,7 @@ namespace VesizleMvcCore.Controllers
         public async Task<IActionResult> Favorites()
         {
             var favorites = await _userManager.GetFavoritesAsync(HttpContext.User);
-            FavoriteListViewModel favoriteListViewModels=new FavoriteListViewModel();
+            FavoriteListViewModel favoriteListViewModels = new FavoriteListViewModel();
 
             if (favorites != null)
             {
@@ -102,6 +114,11 @@ namespace VesizleMvcCore.Controllers
                         favoriteListViewModels.FavoriteDetailViewModels.Add(_mapper.Map<FavoriteDetailViewModel>(result.Data));
                     }
                 }
+                //WebServis Request
+                var userId = _userManager.GetUserId(HttpContext.User);
+                CountWebServiceSoapClient client = new CountWebServiceSoapClient(CountWebServiceSoapClient.EndpointConfiguration.CountWebServiceSoap);
+                var response = await client.FavoriteCountAsync(userId);
+                favoriteListViewModels.Count = response.Body.FavoriteCountResult;
             }
             return View(favoriteListViewModels);
         }
@@ -200,7 +217,7 @@ namespace VesizleMvcCore.Controllers
         [HttpGet]
         public async Task<bool> IsFavorite([Required] int movieId)
         {
-          return await _userManager.IsFavoriteAsync(HttpContext.User, movieId);
+            return await _userManager.IsFavoriteAsync(HttpContext.User, movieId);
         }
         [HttpGet]
         [Authorize]

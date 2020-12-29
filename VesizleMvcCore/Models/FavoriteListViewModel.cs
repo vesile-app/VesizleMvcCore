@@ -12,5 +12,6 @@ namespace VesizleMvcCore.Models
             FavoriteDetailViewModels=new List<FavoriteDetailViewModel>();
         }
         public List<FavoriteDetailViewModel> FavoriteDetailViewModels { get; set; }
+        public int Count { get; set; }
     }
 }
