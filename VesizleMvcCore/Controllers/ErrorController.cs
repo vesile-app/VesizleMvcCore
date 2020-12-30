@@ -21,7 +21,7 @@ namespace VesizleMvcCore.Controllers
                 case 500:
                     return RedirectToAction("InternalServerError");
                 default:
-                    return RedirectToAction("Error", new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+                    return RedirectToAction("ErrorWithModel", new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
             }
         }
 
@@ -30,13 +30,13 @@ namespace VesizleMvcCore.Controllers
         {
             return View();
         }
-        [HttpGet("")]
+        [HttpGet]
         public IActionResult InternalServerError()
         {
             return View();
         }
-        [HttpGet("")]
-        public IActionResult Error(ErrorViewModel model)
+        [HttpGet]
+        public IActionResult ErrorWithModel(ErrorViewModel model)
         {
             return View(model);
         }
