@@ -37,6 +37,7 @@ namespace VesizleMvcCore.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
+            throw new ExecutionEngineException("Ex...........");
             HomeIndexViewModel model = new HomeIndexViewModel();
 
             var popularAsync = await _movieService.GetPopularAsync();
@@ -47,14 +48,10 @@ namespace VesizleMvcCore.Controllers
             return View(model);
         }
         [HttpPost]
-        public async Task<ActionResult> Index(string query)
+        public ActionResult Index(string query)
         {
             return RedirectToAction("Index", "Search", new { query});
         }
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+       
     }
 }

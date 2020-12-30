@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Linq;
+using System.ServiceModel;
+using System.ServiceModel.Description;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -67,9 +70,19 @@ namespace VesizleMvcCore.Controllers
                 }
                 //WebServis Request
                 var userId = _userManager.GetUserId(HttpContext.User);
-                CountWebServiceSoapClient client = new CountWebServiceSoapClient(CountWebServiceSoapClient.EndpointConfiguration.CountWebServiceSoap);
-                var response = await client.WatchListCountAsync(userId);
-                watchListViewModel.Count = response.Body.WatchListCountResult;
+                try
+                {
+                    using (CountWebServiceSoapClient client = new CountWebServiceSoapClient(CountWebServiceSoapClient.EndpointConfiguration.CountWebServiceSoap))
+                    {
+                        var response = await client.WatchListCountAsync(userId);
+                        watchListViewModel.Count = response.Body.WatchListCountResult;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    return RedirectToAction("Error", "Home", new ErrorViewModel { MessageTitle = e.Message });
+                }
 
             }
             return View(watchListViewModel);
@@ -92,9 +105,19 @@ namespace VesizleMvcCore.Controllers
                 }
                 //WebServis Request
                 var userId = _userManager.GetUserId(HttpContext.User);
-                CountWebServiceSoapClient client = new CountWebServiceSoapClient(CountWebServiceSoapClient.EndpointConfiguration.CountWebServiceSoap);
-                var response = await client.WatchedListCountAsync(userId);
-                watchedListViewModel.Count = response.Body.WatchedListCountResult;
+                try
+                {
+                    using (CountWebServiceSoapClient client = new CountWebServiceSoapClient(CountWebServiceSoapClient.EndpointConfiguration.CountWebServiceSoap))
+                    {
+                        var response = await client.WatchedListCountAsync(userId);
+                        watchedListViewModel.Count = response.Body.WatchedListCountResult;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    return RedirectToAction("Error", "Home", new ErrorViewModel { MessageTitle = e.Message });
+                }
             }
             return View(watchedListViewModel);
         }
@@ -116,9 +139,19 @@ namespace VesizleMvcCore.Controllers
                 }
                 //WebServis Request
                 var userId = _userManager.GetUserId(HttpContext.User);
-                CountWebServiceSoapClient client = new CountWebServiceSoapClient(CountWebServiceSoapClient.EndpointConfiguration.CountWebServiceSoap);
-                var response = await client.FavoriteCountAsync(userId);
-                favoriteListViewModels.Count = response.Body.FavoriteCountResult;
+                try
+                {
+                    using (CountWebServiceSoapClient client = new CountWebServiceSoapClient(CountWebServiceSoapClient.EndpointConfiguration.CountWebServiceSoap))
+                    {
+                        var response = await client.FavoriteCountAsync(userId);
+                        favoriteListViewModels.Count = response.Body.FavoriteCountResult;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    return RedirectToAction("Error", "Home", new ErrorViewModel { MessageTitle = e.Message });
+                }
             }
             return View(favoriteListViewModels);
         }

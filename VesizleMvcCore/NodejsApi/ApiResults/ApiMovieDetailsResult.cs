@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using VesizleMvcCore.NodejsApi.Entities;
 
@@ -10,6 +11,7 @@ namespace VesizleMvcCore.NodejsApi.ApiResults
     {
         public bool Adult { get; set; }
         public string Backdrop_Path { get; set; }
+        [JsonIgnore]
         public List<BelongsToCollection> Belongs_To_Collection { get; set; }
         public int Budget { get; set; }
         public List<Genre> Genres { get; set; }

@@ -20,6 +20,7 @@ using VesizleMvcCore.Helpers;
 using VesizleMvcCore.Identity;
 using VesizleMvcCore.Identity.CookieConfig;
 using VesizleMvcCore.Identity.IdentityConfig;
+using VesizleMvcCore.Middleware;
 using VesizleMvcCore.NodejsApi.Api;
 using VesizleMvcCore.NodejsApi.Api.Abstract;
 using Westwind.AspNetCore.LiveReload;
@@ -38,6 +39,7 @@ namespace VesizleMvcCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddDbContext<VesizleIdentityDbContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddIdentity<VesizleUser, IdentityRole>().AddEntityFrameworkStores<VesizleIdentityDbContext>()
                 .AddDefaultTokenProviders().AddDefaultTokenProviders(); ;
@@ -70,6 +72,7 @@ namespace VesizleMvcCore
                     SameSite = SameSiteMode.None,
                     SecurePolicy = CookieSecurePolicy.Always
                 };
+
             });
             services.AddAuthorization(opts =>
             {
@@ -98,6 +101,7 @@ namespace VesizleMvcCore
             services.AddScoped<IMovieService, MoviesApi>();
             services.AddSession();
             services.AddHttpContextAccessor();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -109,10 +113,11 @@ namespace VesizleMvcCore
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
+            app.UseStatusCodePagesWithReExecute("/Error/{0}");
+            app.UseExceptionMiddleware();
             app.UseLiveReload();
             app.UseHttpsRedirection();
             app.UseStaticFiles();

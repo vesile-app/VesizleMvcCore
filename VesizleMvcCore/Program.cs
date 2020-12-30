@@ -13,16 +13,8 @@ namespace VesizleMvcCore
     {
         public static void Main(string[] args)
         {
-            try
-            {
-                CreateHostBuilder(args).Build().Run();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-           
+
+            CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
