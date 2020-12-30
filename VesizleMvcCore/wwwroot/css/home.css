@@ -88,3 +88,11 @@
     border-radius: 15px;
     background-image: url(https://i.imgur.com/r7u7PUN.png)
 }
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.nav-tabs .dropdown-menu, .nav-pills .dropdown-menu, .navbar .dropdown-menu {
+    margin-top: 0;
+}
