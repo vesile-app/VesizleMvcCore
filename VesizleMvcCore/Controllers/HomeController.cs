@@ -37,7 +37,6 @@ namespace VesizleMvcCore.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            throw new ExecutionEngineException("Ex...........");
             HomeIndexViewModel model = new HomeIndexViewModel();
 
             var popularAsync = await _movieService.GetPopularAsync();
