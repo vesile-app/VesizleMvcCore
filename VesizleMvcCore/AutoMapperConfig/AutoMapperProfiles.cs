@@ -56,7 +56,7 @@ namespace VesizleMvcCore.AutoMapperConfig
                 .ForMember(model => model.TotalResults,
                     expression => expression.MapFrom(result => result.Total_Results));
 
-            CreateMap<SearchMovie, SearchDetailViewModel>().ForMember(model => model.PosterPath, expression => expression.MapFrom(result => result.Poster_Path)).ForMember(model => model.ReleaseDate, expression => expression.MapFrom(result => result.Release_Date)).ForMember(model => model.VoteAverage, expression => expression.MapFrom(result => result.Vote_Average));
+            CreateMap<SearchMovie, SearchDetailViewModel>().ForMember(model => model.PosterPath, expression => expression.MapFrom(result => AppConstants.BasePosterUrl + result.Poster_Path)).ForMember(model => model.ReleaseDate, expression => expression.MapFrom(result => result.Release_Date)).ForMember(model => model.VoteAverage, expression => expression.MapFrom(result => result.Vote_Average));
 
 
 
