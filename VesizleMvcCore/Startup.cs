@@ -74,7 +74,7 @@ namespace VesizleMvcCore
                 };
 
             });
-            services.AddAuthorization(options => options.AddPolicy(UserRoles.Manager, builder => builder.RequireRole(UserRoles.Manager)));
+            services.AddAuthorization(options => options.AddPolicy(UserRoleNames.Manager, builder => builder.RequireRole(UserRoleNames.Manager)));
             services.AddAutoMapper(typeof(Startup));
             services.AddLiveReload();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();

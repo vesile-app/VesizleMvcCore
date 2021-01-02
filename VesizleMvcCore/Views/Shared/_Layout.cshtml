@@ -35,7 +35,7 @@
 
         @if (User.Identity.IsAuthenticated)
         {
-            if (User.IsInRole(UserRoles.Admin))
+            if (User.IsInRole(UserRoleNames.Admin))
             {
 
                 <button id="loginBtn" class="btn btn-outline-warning btn-light navbar-right my-2 my-sm-0 mr-2 ml-3" onclick="location.href = '@Url.Action("Index", "Admin")'">Managament <i class="fas fa-cogs"></i></button>

@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Index";
 }
-@if (User.IsInRole(UserRoles.Manager))
+@if (User.IsInRole(UserRoleNames.Manager))
 {
     <a asp-action="Index" asp-controller="Role" class="btn btn-success float-lelft">Role managament</a>
 }
@@ -30,13 +30,13 @@
                 <td>@user.EmailConfirmed</td>
                 <td>@user.UserName</td>
                 <td>
-                    @if (User.IsInRole(UserRoles.Manager))
+                    @if (User.IsInRole(UserRoleNames.Manager))
                     {
                         <div class="d-flex">
                             @foreach (string role in user.CurrentRoles)
                             {
                                 <h4>
-                                    @if (role == UserRoles.Standard)
+                                    @if (role == UserRoleNames.Standard)
                                     {
                                         <span class="badge rounded-pill bg-light mr-2 " role="alert">
                                             @role
@@ -72,7 +72,7 @@
                         @foreach (string role in user.CurrentRoles)
                         {
                             <h4>
-                                @if (role == UserRoles.Standard)
+                                @if (role == UserRoleNames.Standard)
                                 {
                                     <span class="badge rounded-pill bg-light mr-2 " role="alert">
                                         @role
