@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using VesizleMvcCore.Constants
+@using System.Security.Claims
+@using VesizleMvcCore.Identity
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -22,16 +25,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Jura:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <link href="~/node_modules//toastify-js/src/toastify.css" rel="stylesheet" />
+
+    <script src="~/node_modules/@Html.Raw("@popperjs")/core/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/@(Html.Raw("@popperjs"))/core@2/dist/umd/popper.js"></script>
 </head>
 <body>
     <nav class="navbar py-1">
         <a class="navbar-brand text-warning mx-auto" href="@Url.Action("Index", "Home")"><i class="fas fa-couch"></i> Vesile</a>
-        
+
         @if (User.Identity.IsAuthenticated)
         {
+            if (User.IsInRole(UserRoles.Admin))
+            {
+
+                <button id="loginBtn" class="btn btn-outline-warning btn-light navbar-right my-2 my-sm-0 mr-2 ml-3" onclick="location.href = '@Url.Action("Index", "Admin")'">Managament <i class="fas fa-cogs"></i></button>
+            }
             <div class="dropdown">
                 <button class="btn btn-outline-warning btn-light navbar-right my-2 my-sm-0 dropdown-toggle" id="loginBtn" type="button">
-                    <i class="far fa-compass"></i> Menu 
+                    <i class="far fa-compass"></i> Menu
                 </button>
                 <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="@Url.Action("Favorites", "Profile")">> Favorites <i class="fa fa-heart"></i></a>
@@ -64,6 +75,7 @@
     </footer>
     @*<script src="~/lib/combined.min.js"></script>*@
     <script src="~/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
     <script src="~/node_modules/jquery/dist/jquery.min.js"></script>
 
     <script src="~/node_modules/toastify-js/src/toastify.js"></script>

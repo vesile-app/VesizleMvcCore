@@ -12,7 +12,7 @@
             <h2 class="name">@Html.DisplayFor(model => model.FirstName)</h2>
             <h2 class="lastname p-t-8">@Html.DisplayFor(model => model.LastName)</h2>
             <h4 class="email p-t-12" >@Html.DisplayFor(model => model.Email)</h4>
-            <h2 class="lastname p-t-2"><a href="@Url.Action("Edit", "Profile")">Edit Profile / Change Password</a></h2>
+            <h2 class="lastname p-t-2"><a href="@Url.Action("Edit", "Profile")">Edit Profile</a>/<a href="@Url.Action("UpdatePassword", "Profile")">Change Password</a></h2>
         </div>
     </div>
 </div>

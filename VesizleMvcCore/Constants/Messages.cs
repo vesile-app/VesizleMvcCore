@@ -19,7 +19,7 @@ namespace VesizleMvcCore.Constants
         public static string RoleDeleteSuccess = "Role deleted to successful.";
         public static string AddToRoleSuccess = "Role Added to successful..";
         public static string RemoveToRoleSuccess = "Role removed to successful.";
-        public static string OldPasswordFail = "Eski şifre hatalı.";
+        public static string OldPasswordFail = "Doesn't match your current password.";
         public static string LoginSuccess = "Giriş başarılı.";
 
         //Auth
@@ -28,7 +28,6 @@ namespace VesizleMvcCore.Constants
 
         //Toast
         public static string AlreadyInFavorite = "This movie is already in your favorites.";
-        public static string AlreadyInReminders = "This movie is already in your Reminders.";
         public static string AlreadyInWatchedList = "This movie is already in your WatchedList.";
         public static string AlreadyInWatchList = "This movie is already in your WatchList.";
 

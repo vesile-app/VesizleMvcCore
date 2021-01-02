@@ -41,11 +41,11 @@ namespace VesizleMvcCore
         {
 
             services.AddDbContext<VesizleIdentityDbContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
-            services.AddIdentity<VesizleUser, IdentityRole>().AddEntityFrameworkStores<VesizleIdentityDbContext>()
-                .AddDefaultTokenProviders().AddDefaultTokenProviders(); ;
+            services.AddIdentity<VesizleUser, VesizleRole>().AddEntityFrameworkStores<VesizleIdentityDbContext>()
+                .AddDefaultTokenProviders();
 
             services.AddTransient<IPasswordValidator<VesizleUser>, CustomPasswordPolicy>();
-            services.AddTransient<IRoleValidator<IdentityRole>, RoleValidator<IdentityRole>>();
+            services.AddTransient<IRoleValidator<VesizleRole>, RoleValidator<VesizleRole>>();
             services.AddTransient<IUserValidator<VesizleUser>, UserValidator<VesizleUser>>();
             services.AddTransient<IPasswordHasher<VesizleUser>, PasswordHasher<VesizleUser>>();
             services.Configure<IdentityOptions>(opts =>
@@ -62,7 +62,7 @@ namespace VesizleMvcCore
             {
                 options.LoginPath = "/Auth/Login";
                 options.LogoutPath = "/Auth/Logout";
-                options.AccessDeniedPath = "/Home";
+                options.AccessDeniedPath = "/Error/AccessDenied";
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
                 options.SlidingExpiration = true;
                 options.Cookie = new CookieBuilder()
@@ -74,21 +74,7 @@ namespace VesizleMvcCore
                 };
 
             });
-            services.AddAuthorization(opts =>
-            {
-                opts.AddPolicy(UserRoles.Standard, policy =>
-                {
-                    policy.RequireRole(UserRoles.Standard);
-                });
-                opts.AddPolicy(UserRoles.Manager, policy =>
-                {
-                    policy.RequireRole(UserRoles.Manager);
-                });
-                opts.AddPolicy(UserRoles.Manager, policy =>
-                {
-                    policy.RequireRole(UserRoles.Manager);
-                });
-            });
+            services.AddAuthorization(options => options.AddPolicy(UserRoles.Manager, builder => builder.RequireRole(UserRoles.Manager)));
             services.AddAutoMapper(typeof(Startup));
             services.AddLiveReload();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();

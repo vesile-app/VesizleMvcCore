@@ -6,14 +6,11 @@ using System.Threading.Tasks;
 
 namespace VesizleMvcCore.Models
 {
-    public class UserUpdateViewModel
+    public class AddUserRoleModel
     {
         [Required]
-        public string FirstName { get; set; }
+        public string UserId { get; set; }
         [Required]
-        public string LastName { get; set; }
-        [Required]
-        [EmailAddress]
-        public string Email { get; set; }
+        public string RoleId { get; set; }
     }
 }

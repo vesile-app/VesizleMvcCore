@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -14,7 +15,6 @@ using VesizleMvcCore.Extensions;
 using VesizleMvcCore.Identity;
 using VesizleMvcCore.Identity.Entities;
 using VesizleMvcCore.Models;
-using VesizleMvcCore.Models.Dto;
 using VesizleMvcCore.NodejsApi.Api.Abstract;
 using VesizleMvcCore.NodejsApi.ApiResults;
 using VesizleMvcCore.NodejsApi.ApiResults.Results;
@@ -38,7 +38,7 @@ namespace VesizleMvcCore.Controllers
         public async Task<IActionResult> Index()
         {
             HomeIndexViewModel model = new HomeIndexViewModel();
-
+            
             var popularAsync = await _movieService.GetPopularAsync();
             var discoverAsync = await _movieService.GetDiscoverAsync();
 

@@ -1,11 +1,11 @@
 ﻿using System.Linq;
 using AutoMapper;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Vesizle.NodejsApi.Entities;
 using VesizleMvcCore.Constants;
 using VesizleMvcCore.Identity;
 using VesizleMvcCore.Identity.Entities;
 using VesizleMvcCore.Models;
-using VesizleMvcCore.Models.Dto;
 using VesizleMvcCore.NodejsApi.ApiResults;
 using VesizleMvcCore.NodejsApi.Entities;
 
@@ -15,11 +15,18 @@ namespace VesizleMvcCore.AutoMapperConfig
     {
         public AutoMapperProfiles()
         {
-
+            CreateMap<RoleCreateViewModel, VesizleRole>();
+            CreateMap<VesizleRole, RoleDetailViewModel>();
+            CreateMap<VesizleRole, RoleEditViewModel>();
+            CreateMap<VesizleRole, RoleDeleteViewModel>();
+            CreateMap<RoleEditViewModel, VesizleRole>();
+            CreateMap<RoleDeleteViewModel, VesizleRole>();
             CreateMap<RegisterViewModel, VesizleUser>();
             CreateMap<VesizleUser, UserDetailViewModel>();
+            CreateMap<VesizleUser, UserDetailForAdminModel>();
+            CreateMap<VesizleUser, UserUpdateViewModel>();
+            CreateMap<VesizleRole, SelectListItem>().ForMember(model => model.Value, expression => expression.MapFrom(result => result.Id)).ForMember(model => model.Text, expression => expression.MapFrom(result => result.Name));
             CreateMap<LoginViewModel, VesizleUser>();
-            CreateMap<ReminderDto, Reminder>();
             CreateMap<PopularMovie, PopularCardModel>().ForMember(model => model.VoteAverage, expression => expression.MapFrom(result => result.Vote_Average)).ForMember(model => model.MovieId, expression => expression.MapFrom(result => result.Id)).ForMember(model => model.PosterPath, expression => expression.MapFrom(result => AppConstants.BasePosterUrl + result.Poster_Path));
 
             CreateMap<DiscoveryMovie, DiscoverCardModel>().ForMember(model => model.VoteAverage, expression => expression.MapFrom(result => result.Vote_Average)).ForMember(model => model.MovieId, expression => expression.MapFrom(result => result.Id)).ForMember(model => model.PosterPath, expression => expression.MapFrom(result => AppConstants.BasePosterUrl + result.Poster_Path));

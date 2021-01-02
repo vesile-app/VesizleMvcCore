@@ -1,0 +1,96 @@
+﻿@using VesizleMvcCore.Constants
+@model UserListViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+@if (User.IsInRole(UserRoles.Manager))
+{
+    <a asp-action="Index" asp-controller="Role" class="btn btn-success float-lelft">Role managament</a>
+}
+<table class="table table-sm table-hover table-striped table-warning ">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Email confirmed</th>
+            <th scope="col">User name</th>
+            <th scope="col">Roles</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <th class="d-flex" scope="row">@user.Id</th>
+                <td>@user.FirstName</td>
+                <td>@user.LastName</td>
+                <td>@user.Email</td>
+                <td>@user.EmailConfirmed</td>
+                <td>@user.UserName</td>
+                <td>
+                    @if (User.IsInRole(UserRoles.Manager))
+                    {
+                        <div class="d-flex">
+                            @foreach (string role in user.CurrentRoles)
+                            {
+                                <h4>
+                                    @if (role == UserRoles.Standard)
+                                    {
+                                        <span class="badge rounded-pill bg-light mr-2 " role="alert">
+                                            @role
+                                        </span>
+
+                                    }
+                                    else
+                                    {
+                                        <form class="badge rounded-pill bg-warning mr-2 pt-1 pb-1" asp-action="RemoveUserRole" method="post" class="d-flex">
+                                            <input type="hidden" asp-for="RemoveUserRoleModel.UserId" value="@user.Id" />
+                                            <input type="hidden" asp-for="RemoveUserRoleModel.RoleName" value="@role" />
+                                            @role
+                                            <button type="submit" class="btn btn-link btn-sm pb-0 pt-0 pr-0 pl-0 ml-2"><i class="fas fa-times-circle text-danger"></i></button>
+                                        </form>
+
+                                    }
+                                </h4>
+                            }
+                        </div>
+                        @if (user.SelectRoles.Count != 0)
+                        {
+                            <form asp-action="AddUserRole" method="post" class="d-flex">
+                                <select asp-items="user.SelectRoles" asp-for="AddUserRoleModel.RoleId" class="form-control form-control-sm">
+                                </select>
+                                <input type="hidden" asp-for="AddUserRoleModel.UserId" value="@user.Id" />
+                                <button type="submit" class="btn btn-link btn-sm pb-0 pt-0 pr-0 pl-0 ml-2"><i class="fas fa-plus-circle fa-2x text-success"></i></button>
+                            </form>
+                        }
+
+                    }
+                    else
+                    {
+                        @foreach (string role in user.CurrentRoles)
+                        {
+                            <h4>
+                                @if (role == UserRoles.Standard)
+                                {
+                                    <span class="badge rounded-pill bg-light mr-2 " role="alert">
+                                        @role
+                                    </span>
+
+                                }
+                                else
+                                {
+                                    <span class="badge rounded-pill bg-warning mr-2 " role="alert">
+                                        @role
+                                    </span>
+
+                                }
+                            </h4>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

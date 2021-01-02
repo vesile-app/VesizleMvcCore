@@ -57,7 +57,6 @@ namespace VesizleMvcCore.Controllers
                     {
                         return RedirectToAction("Index", "Home");
                     }
-                    //todo:notification
                 }
                 ModelState.AddModelError(nameof(model.Email), Messages.LoginFailed);
                 return View(model);
@@ -140,12 +139,12 @@ namespace VesizleMvcCore.Controllers
             return View();
         }
         [HttpGet("[action]/{userId}/{token}")]
-        public IActionResult UpdatePassword(string userId, string token)
+        public IActionResult ResetPassword(string userId, string token)
         {
             return View();
         }
         [HttpPost("[action]/{userId}/{token}")]
-        public async Task<IActionResult> UpdatePassword(UpdatePasswordViewModel model, string userId, string token)
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model, string userId, string token)
         {
             if (ModelState.IsValid)
             {

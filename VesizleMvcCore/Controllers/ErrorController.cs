@@ -20,6 +20,8 @@ namespace VesizleMvcCore.Controllers
                     return RedirectToAction("NotFound");
                 case 500:
                     return RedirectToAction("InternalServerError");
+                case 403:
+                    return RedirectToAction("AccessDenied");
                 default:
                     return RedirectToAction("ErrorWithModel", new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
             }
@@ -32,6 +34,11 @@ namespace VesizleMvcCore.Controllers
         }
         [HttpGet]
         public IActionResult InternalServerError()
+        {
+            return View();
+        }
+        [HttpGet]
+        public IActionResult AccessDenied()
         {
             return View();
         }

@@ -79,30 +79,10 @@ namespace VesizleMvcCore.Extensions
 
             return result;
         }
-        public static async Task<IdentityResult> ReminderAsync(this UserManager<VesizleUser> userManager, ClaimsPrincipal userClaims, Reminder reminder)
-        {
-            IdentityResult result;
-            var userId = userClaims.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var user = await userManager.Users.Include(vesizleUser => vesizleUser.Reminders)
-                .FirstOrDefaultAsync(vesizleUser => vesizleUser.Id == userId);
-            var userReminder = user.Reminders.FirstOrDefault(rem => rem.MovieId == reminder.MovieId);
-            if (userReminder == null)
-            {
-                user.Reminders.Add(reminder);
-                result = await userManager.UpdateAsync(user);
-            }
-            else
-            {
-                user.Reminders.Remove(userReminder);
-                result = await userManager.UpdateAsync(user);
-            }
-
-            return result;
-        }
         public static Task<VesizleUser> GetUserByAllAsync(this UserManager<VesizleUser> userManager, ClaimsPrincipal userClaims)
         {
             var userId = userClaims.FindFirst(ClaimTypes.NameIdentifier).Value;
-            return userManager.Users.Include(vesizleUser => vesizleUser.Favorites).Include(vesizleUser => vesizleUser.WatchLists).Include(vesizleUser => vesizleUser.WatchedLists).Include(vesizleUser => vesizleUser.Reminders)
+            return userManager.Users.Include(vesizleUser => vesizleUser.Favorites).Include(vesizleUser => vesizleUser.WatchLists).Include(vesizleUser => vesizleUser.WatchedLists)
                 .FirstOrDefaultAsync(vesizleUser => vesizleUser.Id == userId);
         }
         public static Task<ICollection<WatchList>> GetWatchListAsync(this UserManager<VesizleUser> userManager, ClaimsPrincipal userClaims)
@@ -123,14 +103,7 @@ namespace VesizleMvcCore.Extensions
             return userManager.Users.Include(vesizleUser => vesizleUser.Favorites).Select(user => user.Favorites)
                 .FirstOrDefaultAsync(lists => lists.FirstOrDefault(favorite => favorite.UserId == userId) != null); ;
         }
-        public static Task<ICollection<Reminder>> GetRemindersAsync(this UserManager<VesizleUser> userManager, ClaimsPrincipal userClaims)
-        {
-            var userId = userClaims.FindFirst(ClaimTypes.NameIdentifier).Value;
-            return userManager.Users.Include(vesizleUser => vesizleUser.Reminders).Select(user => user.Reminders)
-                .FirstOrDefaultAsync(lists => lists.FirstOrDefault(reminder => reminder.UserId == userId) != null); ;
-        }
-
-
+  
         public static async Task<bool> IsFavoriteAsync(this UserManager<VesizleUser> userManager, ClaimsPrincipal userClaims, int movieId)
         {
             var userId = userClaims.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -154,13 +127,6 @@ namespace VesizleMvcCore.Extensions
 
             return user.WatchedLists.FirstOrDefault(watched => watched.MovieId == movieId) != null;
         }
-        public static async Task<bool> IsReminderAsync(this UserManager<VesizleUser> userManager, ClaimsPrincipal userClaims, int movieId)
-        {
-            var userId = userClaims.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var user = await userManager.Users.Include(vesizleUser => vesizleUser.Reminders)
-                .FirstOrDefaultAsync(vesizleUser => vesizleUser.Id == userId);
-
-            return user.Reminders.FirstOrDefault(rem => rem.MovieId == movieId) != null;
-        }
+     
     }
 }

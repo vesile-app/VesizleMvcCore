@@ -1,0 +1,32 @@
+﻿@model RoleListViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<a asp-action="Create" asp-controller="Role" class="btn btn-success float-lelft">Add new role</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">ConcurrencyStamp</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var role in Model.RoleDetailViewModels)
+        {
+            <tr>
+                <th scope="row">@role.Id</th>
+                <td>@role.Name</td>
+                <td>@role.ConcurrencyStamp</td>
+                <td><a asp-action="Edit" asp-route-id="@role.Id" class="btn btn-warning">Edit</a></td>
+                <td><a asp-action="Delete"  asp-route-id="@role.Id" class="btn btn-danger">Delete</a></td>
+            </tr>
+        }
+
+
+    </tbody>
+</table>

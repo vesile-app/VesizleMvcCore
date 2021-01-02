@@ -174,26 +174,7 @@ namespace VesizleMvcCore.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Reminders",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    MovieId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Reminders", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Reminders_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
+            
 
             migrationBuilder.CreateTable(
                 name: "WatchedList",
@@ -279,10 +260,6 @@ namespace VesizleMvcCore.Migrations
                 table: "Favorites",
                 column: "UserId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Reminders_UserId",
-                table: "Reminders",
-                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_WatchedList_UserId",
@@ -315,8 +292,6 @@ namespace VesizleMvcCore.Migrations
             migrationBuilder.DropTable(
                 name: "Favorites");
 
-            migrationBuilder.DropTable(
-                name: "Reminders");
 
             migrationBuilder.DropTable(
                 name: "WatchedList");

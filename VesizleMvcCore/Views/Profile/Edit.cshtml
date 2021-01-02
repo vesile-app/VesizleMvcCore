@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "Update";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
@@ -10,30 +9,34 @@
     <div class="clappingBoardTop">
     </div>
     <div class="clappingBoardBottomUpdate">
-        <div class="userInfoUpdate">
-            <div class="form-group update">
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
-            </div>
-            <div class="form-group update">
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
-            </div>
-            <div class="form-group update">
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group update">
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group update">
-                <input type="submit" value="Save" class="btn btn-primary m-l-70" />
+        <form asp-action="Edit">
+            <div class="userInfoUpdate">
+                <div class="form-group update">
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group update">
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group update">
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group update">
+                    <h2 class="lastname p-t-2"><a href="@Url.Action("UpdatePassword", "Profile")">Change Password</a></h2>
+                </div>
 
-                <a asp-action="Delete" value="Delete" class="btn btn-danger m-l-30">Delete</a>
+                <div class="form-group update">
+                    <input type="submit" value="Save" class="btn btn-primary m-l-70" />
+                    <a asp-action="Delete" value="Delete" class="btn btn-danger m-l-30">Delete</a>
 
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 
+@section Scripts {
+    @{await Html.RenderPartialAsync("/Views/Shared/_ValidationScriptsPartial.cshtml");}
+}

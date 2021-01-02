@@ -12,7 +12,6 @@ namespace VesizleMvcCore.Identity
             Favorites = new List<Favorite>();
             WatchLists = new List<WatchList>();
             WatchedLists = new List<WatchedList>();
-            Reminders = new List<Reminder>();
         }
         [Required]
         public string FirstName { get; set; }
@@ -22,6 +21,5 @@ namespace VesizleMvcCore.Identity
         public virtual ICollection<Favorite> Favorites { get; set; }
         public virtual ICollection<WatchList> WatchLists { get; set; }
         public virtual ICollection<WatchedList> WatchedLists { get; set; }
-        public virtual ICollection<Reminder> Reminders { get; set; }
     }
 }
