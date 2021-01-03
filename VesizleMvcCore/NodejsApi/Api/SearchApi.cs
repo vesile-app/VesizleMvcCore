@@ -12,7 +12,7 @@ using VesizleMvcCore.NodejsApi.ApiResults;
 
 namespace VesizleMvcCore.NodejsApi.Api
 {
-    public class SearchApi :  ISearchService
+    public class SearchApi : ISearchService
     {
 
         private static string ApiUrl = "search/";
@@ -21,7 +21,7 @@ namespace VesizleMvcCore.NodejsApi.Api
         {
             _httpClient = clientFactory.CreateClient(AppConstants.HttpClientKey);
         }
-        public async Task<ApiSearchResult> SearchAsync(string query, int page = 1)
+        public async Task<ApiSearchResult> SearchAsync(string query, int page)
         {
             var url = ApiUrl + $"movie?query={query}&page={page}";
             var res = await _httpClient.GetAsync(url);

@@ -8,5 +8,6 @@ namespace VesizleMvcCore.Models
 {
     public class SearchViewModel : BaseListResultModel<SearchDetailViewModel>
     {
+        public string Query { get; set; }
     }
 }

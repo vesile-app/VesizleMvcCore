@@ -5,37 +5,85 @@
 }
 
 
-    <div class="container h-100 m-t-25">
-        <div class="d-flex justify-content-center h-100">
-            <div class="searchbar">
-                <form class="searchbar-form" method="post">
-                    <button type="submit" class="btn btn-default">
-                        <span class="fas fa-search" aria-hidden="true"></span>
-                    </button>
-                    <input name="query" class="search_input" type="text" placeholder="Search for a Movie, Tv Series...">
-                </form>
-            </div>
+<div class="container h-100 m-t-25">
+    <div class="d-flex justify-content-center h-100">
+        <div class="searchbar">
+            <form asp-action="Index" class="searchbar-form" method="get">
+                <button type="submit" class="btn btn-default">
+                    <span class="fas fa-search" aria-hidden="true"></span>
+                </button>
+                <input name="query" class="search_input" type="text" placeholder="Search for a Movie, Tv Series...">
+            </form>
         </div>
     </div>
+</div>
+@if (Model.Results.Count != 0)
+{
     <div class="searchContainer">
-    @foreach (var item in Model.Results)
-    {
-        <div class="searchBlock">
-            <div class="row">
-                <div class="column">
-                    <a href="/movie/details/@item.Id" title="@item.Title">
-                        <img class="searchPoster" src="@item.PosterPath">
-                    </a>
-                    <div class="textBlock">
+        @foreach (var item in Model.Results)
+        {
+            <div class="searchBlock">
+                <div class="row">
+                    <div class="column">
                         <a href="/movie/details/@item.Id" title="@item.Title">
-                            <h3>@item.Title</h3>
-                            <h6>@item.ReleaseDate</h6>
+                            <img class="searchPoster" src="@item.PosterPath">
                         </a>
+                        <div class="textBlock">
+                            <a href="/movie/details/@item.Id" title="@item.Title">
+                                <h3>@item.Title</h3>
+                                <h6>@item.ReleaseDate</h6>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    }
-    
-    @*PAGE FOOTer*@
+        }
+
+        @*PAGE FOOTer*@
     </div>
+
+
+    <nav aria-label="Page navigation example ">
+        <ul class="pagination justify-content-center">
+            @{
+                string prevDisabled = "";
+                string nextDisabled = "";
+                int totalPage = Model.TotalPages > 30 ? 30 : Model.TotalPages;
+            }
+            @if (Model.Page == 1)
+            {
+                prevDisabled = "disabled";
+            }
+            <li class="page-item @prevDisabled">
+                <a class="page-link" asp-action="Index" asp-route-query="@Model.Query" asp-route-page="@(Model.Page - 1)" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            @for (int pageNo = 1; pageNo < totalPage + 1; pageNo++)
+            {
+                string active = "";
+                if (pageNo == Model.Page)
+                {
+                    active = "active";
+                }
+                <li class="page-item @active"><a class="page-link" asp-action="Index" asp-route-query="@Model.Query" asp-route-page="@pageNo">@pageNo</a></li>
+
+            }
+            @if (totalPage == Model.Page)
+            {
+                nextDisabled = "disabled";
+            }
+            <li class="page-item @nextDisabled">
+                <a class="page-link" asp-action="Index" asp-route-query="@Model.Query" asp-route-page="@(Model.Page + 1)" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+}
+else
+{
+    <h5 class="fw-lighter  text-center mt-5">
+        Your search - <b class="text-muted">@Model.Query</b> - did not match any documents.
+    </h5>
+}

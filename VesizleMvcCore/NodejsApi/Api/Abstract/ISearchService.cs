@@ -9,6 +9,6 @@ namespace VesizleMvcCore.NodejsApi.Api.Abstract
 {
     public interface ISearchService
     {
-        Task<ApiSearchResult> SearchAsync(string query, int page = 1);
+        Task<ApiSearchResult> SearchAsync(string query, int page );
     }
 }
