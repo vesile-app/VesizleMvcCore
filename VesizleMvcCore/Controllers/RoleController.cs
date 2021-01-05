@@ -14,7 +14,7 @@ using VesizleMvcCore.Models;
 
 namespace VesizleMvcCore.Controllers
 {
-    [Authorize(Roles = "Manager")]
+    //[Authorize(Roles = "Manager")]
     public class RoleController : Controller
     {
         private RoleManager<VesizleRole> _roleManager;

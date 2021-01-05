@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Favorites";
 }
-<h1>Favorites</h1>
+<h1><i class="fa fa-heart fasIcon"></i> Favorites</h1>
 <hr />
 
 <style>
@@ -10,43 +10,56 @@
         padding: 2rem 0rem;
     }
 
-    h4 {
-        margin: 2rem 0rem 1rem;
+    img {
+        width: 150px;
     }
 
-    .table-image {
-        td, th
-
-    {
-        vertical-align: middle;
+    .filmRow {
+        border-radius: 10px;
+        box-shadow: inset 0 0 4px rgba(64, 64, 64, 0.8);
+        background-color: rgba(255, 255, 255, 0.1);
     }
+
+    .filmRow:hover {
+        background: rgba(255, 165, 0, 0.3);
+    }
+
+    .header {
+        background: rgba(255, 165, 0, 0.5);
+        box-shadow: inset -1px 0 4px rgba(64, 64, 64, 0.3);
     }
 </style>
 
 <div class="row">
     <div class="col-12">
-        <h6>Count <span class="badge bg-secondary">@Model.Count</span></h6>
+        <h4>Count <span class="badge bg-secondary text-warning">@Model.Count</span></h4>
         <table class="table table-image">
             <thead>
-            <tr>
-                <th scope="col">Movie Id</th>
-                <th scope="col">Poster</th>
-                <th scope="col">Title</th>
-                <th scope="col">Vote Average</th>
-            </tr>
+                <tr class="font-italic header table-striped">
+                    <th scope="col">Movie Id</th>
+                    <th scope="col">Poster</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Vote Average</th>
+                </tr>
             </thead>
             <tbody>
-            @foreach (var favorite in Model.FavoriteDetailViewModels)
-            {
-                <tr>
-                    <th scope="row">@favorite.MovieId</th>
-                    <td class="w-25">
-                        <img src="@favorite.PosterUrl" class="img-fluid img-thumbnail" alt="Sheep">
-                    </td>
-                    <td>@favorite.Title</td>
-                    <td>@favorite.VoteAverage</td>
-                </tr>
-            }
+                @foreach (var favorite in Model.FavoriteDetailViewModels)
+                {
+                    <tr class="filmRow">
+                        <th scope="row">@favorite.MovieId</th>
+                        <td class="w-25">
+                            <a href="/movie/details/@favorite.MovieId" title="@favorite.Title">
+                                <img src="@favorite.PosterUrl" class="img-fluid img-thumbnail" alt="Sheep">
+                            </a>
+                        </td>
+                        <td>
+                            <a href="/movie/details/@favorite.MovieId" title="@favorite.Title" class="text-black">
+                                <h3 class="m-t-60">@favorite.Title</h3>
+                            </a>
+                        </td>
+                        <td><h1 class="m-t-80">@favorite.VoteAverage</h1></td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>

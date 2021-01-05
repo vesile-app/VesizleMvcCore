@@ -184,7 +184,7 @@ input[type=checkbox]:checked + .favIcon:hover::after {
     }
 }
 img {
-    text-indent: -10000px
+    text-indent: -100000000px;
 }
 .crew {
     position: absolute;

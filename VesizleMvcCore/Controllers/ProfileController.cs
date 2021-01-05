@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
-using ServiceReference1;
+using ServiceReference;
 using VesizleMvcCore.Constants;
 using VesizleMvcCore.Extensions;
 using VesizleMvcCore.Identity;
@@ -26,7 +26,7 @@ using VesizleMvcCore.NodejsApi.Entities;
 namespace VesizleMvcCore.Controllers
 {
 
-    [Authorize(Roles = "Standard")]
+    //[Authorize(Roles = "Standard")]
     public class ProfileController : Controller
     {
         private IMapper _mapper;

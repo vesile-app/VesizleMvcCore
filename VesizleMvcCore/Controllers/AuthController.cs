@@ -27,8 +27,9 @@ namespace VesizleMvcCore.Controllers
         private IPasswordHasher<VesizleUser> _passwordHasher;
         private IPasswordValidator<VesizleUser> _passwordValidator;
         private IUserValidator<VesizleUser> _userValidator;
+        private RoleManager<VesizleRole> _roleManager;
         private IMapper _mapper;
-        public AuthController(UserManager<VesizleUser> userManager, IMapper mapper, IPasswordValidator<VesizleUser> passwordValidator, IPasswordHasher<VesizleUser> passwordHasher, SignInManager<VesizleUser> signInManager, IUserValidator<VesizleUser> userValidator)
+        public AuthController(UserManager<VesizleUser> userManager, IMapper mapper, IPasswordValidator<VesizleUser> passwordValidator, IPasswordHasher<VesizleUser> passwordHasher, SignInManager<VesizleUser> signInManager, IUserValidator<VesizleUser> userValidator, RoleManager<VesizleRole> roleManager)
         {
             _userManager = userManager;
             _mapper = mapper;
@@ -36,11 +37,13 @@ namespace VesizleMvcCore.Controllers
             _passwordHasher = passwordHasher;
             _signInManager = signInManager;
             _userValidator = userValidator;
+            _roleManager = roleManager;
         }
 
         [HttpGet]
-        public ActionResult Login()
+        public async Task<ActionResult> Login()
         {
+            //var result2 = await _roleManager.CreateAsync(new VesizleRole(UserRoleNames.Admin));
             return View();
         }
         [HttpPost]
@@ -55,6 +58,12 @@ namespace VesizleMvcCore.Controllers
                     var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
                     if (result.Succeeded)
                     {
+                        //var result2 = await _roleManager.CreateAsync(new VesizleRole(UserRoleNames.Admin));
+                        //await _roleManager.CreateAsync(new VesizleRole { Name = UserRoleNames.Manager });
+                        //await _roleManager.CreateAsync(new VesizleRole { Name = UserRoleNames.Standard });
+                        //await _userManager.AddToRoleAsync(user, UserRoleNames.Standard);
+                        //await _userManager.AddToRoleAsync(user, UserRoleNames.Manager);
+                        //await _userManager.AddToRoleAsync(user, UserRoleNames.Admin);
                         return RedirectToAction("Index", "Home");
                     }
                 }
@@ -119,7 +128,7 @@ namespace VesizleMvcCore.Controllers
                 {
                     string resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
                     EmailHelper emailHelper = new EmailHelper();
-                    var result=emailHelper.SendEmailResetPassword(model.Email, user.Id, resetToken);
+                    var result = emailHelper.SendEmailResetPassword(model.Email, user.Id, resetToken);
                     if (result.IsSuccessful)
                     {
                         ViewBag.EmailSent = Messages.EmailSent;
@@ -128,7 +137,7 @@ namespace VesizleMvcCore.Controllers
                     ModelState.AddModelError(nameof(model.Email), result.Message);
                     return View(model);
                 }
-                ModelState.AddModelError(nameof(model.Email),Messages.EmailNotFound);
+                ModelState.AddModelError(nameof(model.Email), Messages.EmailNotFound);
                 return View(model);
             }
             return View(model);
@@ -162,7 +171,7 @@ namespace VesizleMvcCore.Controllers
                     ModelState.AddIdentityError(result2.Errors);
                     return View(model);
                 }
-                ModelState.AddIdentityError(nameof(model.RePassword),result.Errors);
+                ModelState.AddIdentityError(nameof(model.RePassword), result.Errors);
                 return View(model);
             }
             return View(model);

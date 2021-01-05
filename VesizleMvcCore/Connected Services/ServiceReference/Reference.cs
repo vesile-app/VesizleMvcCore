@@ -7,23 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ServiceReference1
+namespace ServiceReference
 {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.CountWebServiceSoap")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference.CountWebServiceSoap")]
     public interface CountWebServiceSoap
     {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/FavoriteCount", ReplyAction="*")]
-        System.Threading.Tasks.Task<ServiceReference1.FavoriteCountResponse> FavoriteCountAsync(ServiceReference1.FavoriteCountRequest request);
+        System.Threading.Tasks.Task<ServiceReference.FavoriteCountResponse> FavoriteCountAsync(ServiceReference.FavoriteCountRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/WatchListCount", ReplyAction="*")]
-        System.Threading.Tasks.Task<ServiceReference1.WatchListCountResponse> WatchListCountAsync(ServiceReference1.WatchListCountRequest request);
+        System.Threading.Tasks.Task<ServiceReference.WatchListCountResponse> WatchListCountAsync(ServiceReference.WatchListCountRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/WatchedListCount", ReplyAction="*")]
-        System.Threading.Tasks.Task<ServiceReference1.WatchedListCountResponse> WatchedListCountAsync(ServiceReference1.WatchedListCountRequest request);
+        System.Threading.Tasks.Task<ServiceReference.WatchedListCountResponse> WatchedListCountAsync(ServiceReference.WatchedListCountRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -34,13 +34,13 @@ namespace ServiceReference1
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="FavoriteCount", Namespace="http://tempuri.org/", Order=0)]
-        public ServiceReference1.FavoriteCountRequestBody Body;
+        public ServiceReference.FavoriteCountRequestBody Body;
         
         public FavoriteCountRequest()
         {
         }
         
-        public FavoriteCountRequest(ServiceReference1.FavoriteCountRequestBody Body)
+        public FavoriteCountRequest(ServiceReference.FavoriteCountRequestBody Body)
         {
             this.Body = Body;
         }
@@ -74,13 +74,13 @@ namespace ServiceReference1
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="FavoriteCountResponse", Namespace="http://tempuri.org/", Order=0)]
-        public ServiceReference1.FavoriteCountResponseBody Body;
+        public ServiceReference.FavoriteCountResponseBody Body;
         
         public FavoriteCountResponse()
         {
         }
         
-        public FavoriteCountResponse(ServiceReference1.FavoriteCountResponseBody Body)
+        public FavoriteCountResponse(ServiceReference.FavoriteCountResponseBody Body)
         {
             this.Body = Body;
         }
@@ -114,13 +114,13 @@ namespace ServiceReference1
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="WatchListCount", Namespace="http://tempuri.org/", Order=0)]
-        public ServiceReference1.WatchListCountRequestBody Body;
+        public ServiceReference.WatchListCountRequestBody Body;
         
         public WatchListCountRequest()
         {
         }
         
-        public WatchListCountRequest(ServiceReference1.WatchListCountRequestBody Body)
+        public WatchListCountRequest(ServiceReference.WatchListCountRequestBody Body)
         {
             this.Body = Body;
         }
@@ -154,13 +154,13 @@ namespace ServiceReference1
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="WatchListCountResponse", Namespace="http://tempuri.org/", Order=0)]
-        public ServiceReference1.WatchListCountResponseBody Body;
+        public ServiceReference.WatchListCountResponseBody Body;
         
         public WatchListCountResponse()
         {
         }
         
-        public WatchListCountResponse(ServiceReference1.WatchListCountResponseBody Body)
+        public WatchListCountResponse(ServiceReference.WatchListCountResponseBody Body)
         {
             this.Body = Body;
         }
@@ -194,13 +194,13 @@ namespace ServiceReference1
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="WatchedListCount", Namespace="http://tempuri.org/", Order=0)]
-        public ServiceReference1.WatchedListCountRequestBody Body;
+        public ServiceReference.WatchedListCountRequestBody Body;
         
         public WatchedListCountRequest()
         {
         }
         
-        public WatchedListCountRequest(ServiceReference1.WatchedListCountRequestBody Body)
+        public WatchedListCountRequest(ServiceReference.WatchedListCountRequestBody Body)
         {
             this.Body = Body;
         }
@@ -234,13 +234,13 @@ namespace ServiceReference1
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="WatchedListCountResponse", Namespace="http://tempuri.org/", Order=0)]
-        public ServiceReference1.WatchedListCountResponseBody Body;
+        public ServiceReference.WatchedListCountResponseBody Body;
         
         public WatchedListCountResponse()
         {
         }
         
-        public WatchedListCountResponse(ServiceReference1.WatchedListCountResponseBody Body)
+        public WatchedListCountResponse(ServiceReference.WatchedListCountResponseBody Body)
         {
             this.Body = Body;
         }
@@ -267,13 +267,13 @@ namespace ServiceReference1
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    public interface CountWebServiceSoapChannel : ServiceReference1.CountWebServiceSoap, System.ServiceModel.IClientChannel
+    public interface CountWebServiceSoapChannel : ServiceReference.CountWebServiceSoap, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    public partial class CountWebServiceSoapClient : System.ServiceModel.ClientBase<ServiceReference1.CountWebServiceSoap>, ServiceReference1.CountWebServiceSoap
+    public partial class CountWebServiceSoapClient : System.ServiceModel.ClientBase<ServiceReference.CountWebServiceSoap>, ServiceReference.CountWebServiceSoap
     {
         
         /// <summary>
@@ -310,45 +310,45 @@ namespace ServiceReference1
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ServiceReference1.FavoriteCountResponse> ServiceReference1.CountWebServiceSoap.FavoriteCountAsync(ServiceReference1.FavoriteCountRequest request)
+        System.Threading.Tasks.Task<ServiceReference.FavoriteCountResponse> ServiceReference.CountWebServiceSoap.FavoriteCountAsync(ServiceReference.FavoriteCountRequest request)
         {
             return base.Channel.FavoriteCountAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ServiceReference1.FavoriteCountResponse> FavoriteCountAsync(string userId)
+        public System.Threading.Tasks.Task<ServiceReference.FavoriteCountResponse> FavoriteCountAsync(string userId)
         {
-            ServiceReference1.FavoriteCountRequest inValue = new ServiceReference1.FavoriteCountRequest();
-            inValue.Body = new ServiceReference1.FavoriteCountRequestBody();
+            ServiceReference.FavoriteCountRequest inValue = new ServiceReference.FavoriteCountRequest();
+            inValue.Body = new ServiceReference.FavoriteCountRequestBody();
             inValue.Body.userId = userId;
-            return ((ServiceReference1.CountWebServiceSoap)(this)).FavoriteCountAsync(inValue);
+            return ((ServiceReference.CountWebServiceSoap)(this)).FavoriteCountAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ServiceReference1.WatchListCountResponse> ServiceReference1.CountWebServiceSoap.WatchListCountAsync(ServiceReference1.WatchListCountRequest request)
+        System.Threading.Tasks.Task<ServiceReference.WatchListCountResponse> ServiceReference.CountWebServiceSoap.WatchListCountAsync(ServiceReference.WatchListCountRequest request)
         {
             return base.Channel.WatchListCountAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ServiceReference1.WatchListCountResponse> WatchListCountAsync(string userId)
+        public System.Threading.Tasks.Task<ServiceReference.WatchListCountResponse> WatchListCountAsync(string userId)
         {
-            ServiceReference1.WatchListCountRequest inValue = new ServiceReference1.WatchListCountRequest();
-            inValue.Body = new ServiceReference1.WatchListCountRequestBody();
+            ServiceReference.WatchListCountRequest inValue = new ServiceReference.WatchListCountRequest();
+            inValue.Body = new ServiceReference.WatchListCountRequestBody();
             inValue.Body.userId = userId;
-            return ((ServiceReference1.CountWebServiceSoap)(this)).WatchListCountAsync(inValue);
+            return ((ServiceReference.CountWebServiceSoap)(this)).WatchListCountAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ServiceReference1.WatchedListCountResponse> ServiceReference1.CountWebServiceSoap.WatchedListCountAsync(ServiceReference1.WatchedListCountRequest request)
+        System.Threading.Tasks.Task<ServiceReference.WatchedListCountResponse> ServiceReference.CountWebServiceSoap.WatchedListCountAsync(ServiceReference.WatchedListCountRequest request)
         {
             return base.Channel.WatchedListCountAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ServiceReference1.WatchedListCountResponse> WatchedListCountAsync(string userId)
+        public System.Threading.Tasks.Task<ServiceReference.WatchedListCountResponse> WatchedListCountAsync(string userId)
         {
-            ServiceReference1.WatchedListCountRequest inValue = new ServiceReference1.WatchedListCountRequest();
-            inValue.Body = new ServiceReference1.WatchedListCountRequestBody();
+            ServiceReference.WatchedListCountRequest inValue = new ServiceReference.WatchedListCountRequest();
+            inValue.Body = new ServiceReference.WatchedListCountRequestBody();
             inValue.Body.userId = userId;
-            return ((ServiceReference1.CountWebServiceSoap)(this)).WatchedListCountAsync(inValue);
+            return ((ServiceReference.CountWebServiceSoap)(this)).WatchedListCountAsync(inValue);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()
@@ -370,7 +370,6 @@ namespace ServiceReference1
                 result.ReaderQuotas = System.Xml.XmlDictionaryReaderQuotas.Max;
                 result.MaxReceivedMessageSize = int.MaxValue;
                 result.AllowCookies = true;
-                result.Security.Mode = System.ServiceModel.BasicHttpSecurityMode.Transport;
                 return result;
             }
             if ((endpointConfiguration == EndpointConfiguration.CountWebServiceSoap12))
@@ -379,11 +378,11 @@ namespace ServiceReference1
                 System.ServiceModel.Channels.TextMessageEncodingBindingElement textBindingElement = new System.ServiceModel.Channels.TextMessageEncodingBindingElement();
                 textBindingElement.MessageVersion = System.ServiceModel.Channels.MessageVersion.CreateVersion(System.ServiceModel.EnvelopeVersion.Soap12, System.ServiceModel.Channels.AddressingVersion.None);
                 result.Elements.Add(textBindingElement);
-                System.ServiceModel.Channels.HttpsTransportBindingElement httpsBindingElement = new System.ServiceModel.Channels.HttpsTransportBindingElement();
-                httpsBindingElement.AllowCookies = true;
-                httpsBindingElement.MaxBufferSize = int.MaxValue;
-                httpsBindingElement.MaxReceivedMessageSize = int.MaxValue;
-                result.Elements.Add(httpsBindingElement);
+                System.ServiceModel.Channels.HttpTransportBindingElement httpBindingElement = new System.ServiceModel.Channels.HttpTransportBindingElement();
+                httpBindingElement.AllowCookies = true;
+                httpBindingElement.MaxBufferSize = int.MaxValue;
+                httpBindingElement.MaxReceivedMessageSize = int.MaxValue;
+                result.Elements.Add(httpBindingElement);
                 return result;
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
@@ -393,11 +392,11 @@ namespace ServiceReference1
         {
             if ((endpointConfiguration == EndpointConfiguration.CountWebServiceSoap))
             {
-                return new System.ServiceModel.EndpointAddress("https://localhost:44322/CountWebService.asmx");
+                return new System.ServiceModel.EndpointAddress("http://localhost:58065/CountWebService.asmx");
             }
             if ((endpointConfiguration == EndpointConfiguration.CountWebServiceSoap12))
             {
-                return new System.ServiceModel.EndpointAddress("https://localhost:44322/CountWebService.asmx");
+                return new System.ServiceModel.EndpointAddress("http://localhost:58065/CountWebService.asmx");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }

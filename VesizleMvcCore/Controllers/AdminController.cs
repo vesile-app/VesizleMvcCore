@@ -13,7 +13,7 @@ using VesizleMvcCore.Models;
 
 namespace VesizleMvcCore.Controllers
 {
-    [Authorize(Roles = "Admin,Manager")]
+    //[Authorize(Roles = "Admin,Manager")]
     public class AdminController : Controller
     {
         private UserManager<VesizleUser> _userManager;
