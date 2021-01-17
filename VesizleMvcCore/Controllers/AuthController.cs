@@ -43,7 +43,6 @@ namespace VesizleMvcCore.Controllers
         [HttpGet]
         public async Task<ActionResult> Login()
         {
-            //var result2 = await _roleManager.CreateAsync(new VesizleRole(UserRoleNames.Admin));
             return View();
         }
         [HttpPost]
@@ -58,12 +57,7 @@ namespace VesizleMvcCore.Controllers
                     var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
                     if (result.Succeeded)
                     {
-                        //var result2 = await _roleManager.CreateAsync(new VesizleRole(UserRoleNames.Admin));
-                        //await _roleManager.CreateAsync(new VesizleRole { Name = UserRoleNames.Manager });
-                        //await _roleManager.CreateAsync(new VesizleRole { Name = UserRoleNames.Standard });
-                        //await _userManager.AddToRoleAsync(user, UserRoleNames.Standard);
-                        //await _userManager.AddToRoleAsync(user, UserRoleNames.Manager);
-                        //await _userManager.AddToRoleAsync(user, UserRoleNames.Admin);
+                      
                         return RedirectToAction("Index", "Home");
                     }
                 }
@@ -100,13 +94,13 @@ namespace VesizleMvcCore.Controllers
                     {
                         user.PasswordHash = _passwordHasher.HashPassword(user, model.Password);
                         var createResult = await _userManager.CreateAsync(user);
-                        //var roleAddResult = await _userManager.AddToRoleAsync(user, UserRoles.Standard);
-                        if (createResult.Succeeded /*&& roleAddResult.Succeeded*/)
+                        var roleAddResult = await _userManager.AddToRoleAsync(user, UserRoleNames.Standard);
+                        if (createResult.Succeeded && roleAddResult.Succeeded)
                         {
                             return RedirectToAction("Index", "Home");
                         }
                         ModelState.AddIdentityError(createResult.Errors);
-                        //ModelState.AddIdentityError(roleAddResult.Errors);
+                        ModelState.AddIdentityError(roleAddResult.Errors);
                         return View(model);
                     }
                     ModelState.AddIdentityError(validateResult.Errors);

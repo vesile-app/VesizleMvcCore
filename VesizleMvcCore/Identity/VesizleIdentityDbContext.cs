@@ -7,15 +7,10 @@ namespace VesizleMvcCore.Identity
 {
     public class VesizleIdentityDbContext : IdentityDbContext<VesizleUser, VesizleRole,string>
     {
-        public VesizleIdentityDbContext(DbContextOptions<VesizleIdentityDbContext> options) : base(options) { }
+        public VesizleIdentityDbContext(DbContextOptions<VesizleIdentityDbContext> options) : base(options)
+        {
+            
+        }
 
-        //protected override void OnModelCreating(ModelBuilder builder)
-        //{
-        //    base.OnModelCreating(builder);
-        //    Roles.Add(new VesizleRole { Name = UserRoleNames.Admin });
-        //    Roles.Add(new VesizleRole { Name = UserRoleNames.Manager });
-        //    Roles.Add(new VesizleRole { Name = UserRoleNames.Standard });
-        //    SaveChanges();
-        //}
     }
 }

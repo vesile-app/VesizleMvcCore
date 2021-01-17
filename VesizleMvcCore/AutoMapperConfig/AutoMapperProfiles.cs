@@ -26,6 +26,7 @@ namespace VesizleMvcCore.AutoMapperConfig
             CreateMap<VesizleUser, UserDetailForAdminModel>();
             CreateMap<VesizleUser, UserUpdateViewModel>();
             CreateMap<VesizleRole, SelectListItem>().ForMember(model => model.Value, expression => expression.MapFrom(result => result.Id)).ForMember(model => model.Text, expression => expression.MapFrom(result => result.Name));
+            CreateMap<RoleDetailViewModel, SelectListItem>().ForMember(model => model.Value, expression => expression.MapFrom(result => result.Id)).ForMember(model => model.Text, expression => expression.MapFrom(result => result.Name));
             CreateMap<LoginViewModel, VesizleUser>();
             CreateMap<PopularMovie, PopularCardModel>().ForMember(model => model.VoteAverage, expression => expression.MapFrom(result => result.Vote_Average)).ForMember(model => model.MovieId, expression => expression.MapFrom(result => result.Id)).ForMember(model => model.PosterPath, expression => expression.MapFrom(result => AppConstants.BasePosterUrl + result.Poster_Path));
 

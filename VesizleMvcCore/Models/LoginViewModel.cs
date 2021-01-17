@@ -9,11 +9,11 @@ namespace VesizleMvcCore.Models
 {
     public class LoginViewModel
     {
-        [Required(ErrorMessage = "email alanı gereklidir.")]
-        [EmailAddress(ErrorMessage = "doğru bir e-mail adresi giriniz.")]
+        [Required]
+        [EmailAddress]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "şifre alanı gereklidir.")]
+        [Required]
         public string Password { get; set; }
         
         public bool RememberMe { get; set; }

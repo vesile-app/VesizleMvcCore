@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using VesizleMvcCore.DataAccess.RoleDal;
+using VesizleMvcCore.DataAccess.UserDal;
 using VesizleMvcCore.Identity;
 using VesizleMvcCore.Models;
 
@@ -20,36 +22,31 @@ namespace VesizleMvcCore.Controllers
         private RoleManager<VesizleRole> _roleManager;
         private IMapper _mapper;
         private SignInManager<VesizleUser> _signInManager;
-        public AdminController(UserManager<VesizleUser> userManager, IMapper mapper, RoleManager<VesizleRole> roleManager, SignInManager<VesizleUser> signInManager)
+        private IUserDal _userDal;
+        private IRoleDal _roleDal;
+        public AdminController(UserManager<VesizleUser> userManager, IMapper mapper, RoleManager<VesizleRole> roleManager, SignInManager<VesizleUser> signInManager, IUserDal userDal, IRoleDal roleDal)
         {
             _userManager = userManager;
             _mapper = mapper;
             _roleManager = roleManager;
             _signInManager = signInManager;
+            _userDal = userDal;
+            _roleDal = roleDal;
         }
 
         public async Task<IActionResult> Index()
         {
-            var users = _userManager.Users.ToList();
+            var users = _userDal.GetUsers();
+            var roles = _roleDal.GetRoles();
 
             UserListViewModel model = new UserListViewModel();
-
             foreach (var user in users)
             {
-                var userDetail = new UserDetailForAdminModel
-                {
-                    Email = user.Email,
-                    EmailConfirmed = user.EmailConfirmed,
-                    FirstName = user.FirstName,
-                    Id = user.Id,
-                    LastName = user.LastName,
-                    UserName = user.UserName
-
-                };
-                userDetail.CurrentRoles = (List<string>)(await _userManager.GetRolesAsync(user));
-                userDetail.SelectRoles = _mapper.Map<List<SelectListItem>>(_roleManager.Roles.Where(role => !userDetail.CurrentRoles.Contains(role.Name)));
-                model.Users.Add(userDetail);
+                user.CurrentRoles = (List<string>)(await _userManager.GetRolesAsync(new VesizleUser() { Id = user.Id, UserName = user.UserName }));
+                user.SelectRoles = _mapper.Map<List<SelectListItem>>(roles.Where(role => !user.CurrentRoles.Contains(role.Name)));
             }
+
+            model.Users = users;
 
             return View(model);
         }

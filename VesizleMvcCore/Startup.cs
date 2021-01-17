@@ -16,6 +16,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using VesizleMvcCore.Constants;
+using VesizleMvcCore.DataAccess.RoleDal;
+using VesizleMvcCore.DataAccess.UserDal;
 using VesizleMvcCore.Helpers;
 using VesizleMvcCore.Identity;
 using VesizleMvcCore.Identity.CookieConfig;
@@ -39,12 +41,13 @@ namespace VesizleMvcCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddDbContext<VesizleIdentityDbContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddIdentity<VesizleUser, VesizleRole>().AddEntityFrameworkStores<VesizleIdentityDbContext>()
                 .AddDefaultTokenProviders();
 
             services.AddTransient<IPasswordValidator<VesizleUser>, CustomPasswordPolicy>();
+            services.AddTransient<IUserDal, UserDal>();
+            services.AddTransient<IRoleDal, RoleDal>();
             services.AddTransient<IRoleValidator<VesizleRole>, RoleValidator<VesizleRole>>();
             services.AddTransient<IUserValidator<VesizleUser>, UserValidator<VesizleUser>>();
             services.AddTransient<IPasswordHasher<VesizleUser>, PasswordHasher<VesizleUser>>();
